@@ -1,0 +1,182 @@
+---
+title: "CESD Analysis Report"
+author: "Melinda Higgins"
+date: "2026-05-18"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# Set up knit chunk options
+# learn more at https://yihui.org/knitr/options/
+# 
+# echo = TRUE to hide code
+# message = FALSE suppress messages, do not show in document
+# warning = FALSE suppress warnings, do not show in document
+# error = TRUE, knit/render document even with errors
+
+knitr::opts_chunk$set(echo = FALSE,
+                      error = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
+
+# load data
+load("help.Rdata")
+
+# load packages
+library(dplyr)
+library(gtsummary)
+library(olsrr)
+library(effects)
+library(modelsummary)
+library(ggplot2)
+
+# Create data subset by race
+# racegrp options are:
+# black, hispanic, other, white
+racechoice <- "white"
+
+helpdata <- helpdata %>%
+  filter(racegrp == racechoice)
+```
+
+# Analysis Report for `r racechoice` race/ethnicity.
+
+## Analysis of Data from the HELP Study
+
+The [HELP (Health Evaluation and Linkage to Primary Care) study](https://onlinelibrary-wiley-com.proxy.library.emory.edu/doi/full/10.1046/j.1360-0443.2003.00328.x?sid=nlm%3Apubmed) was a clinical trial for adult inpatients recruited from a detoxification unit. Patients with no primary care physician were randomized to receive a multidisciplinary assessment and a brief motivational intervention or usual care, with the goal of linking them to primary medical care. The Institutional Review Board of Boston University Medical Center approved all aspects of the study, including the creation of the de-identified dataset available on this page. Variables included in the HELP dataset are described in Table C.2 (p. 279) while Table C.1 (p. 277) provides a comprehensive listing of analyses undertaken in the [SAS and R: Data Management, Statistical Analysis, and Graphics (second edition) book](https://nhorton.people.amherst.edu/sasr2/) using the dataset.
+
+\newpage
+## Correlates with Depressive Symptoms Measured by CESD
+
+Let's run a regression model for the CESD scores [Study Form F](https://nhorton.people.amherst.edu/help/HELP-baseline%20Section%20F.pdf) of the study participants at baseline. 
+
+We will investigate these variables as predictors:
+
+* pss_fr - Perceived Social Support from Friends [Study Form N](https://nhorton.people.amherst.edu/help/HELP-baseline%20Section%20N.pdf)
+* mcs - Mental Component Score from the SF36 Quality of Life Scale, [Study Form B](https://nhorton.people.amherst.edu/help/HELP-baseline.pdf)
+* pcs - Physical Component Score from the SF36 Quality of Life Scale, [Study Form B](https://nhorton.people.amherst.edu/help/HELP-baseline.pdf)
+* sexrisk - Risk Assessment Battery Sexual Practices [Study Form Q](https://nhorton.people.amherst.edu/help/HELP-baseline%20Section%20Q.pdf)
+* indtot - Inventory of Drug Use Consquences [Study Form M](https://nhorton.people.amherst.edu/help/HELP-baseline%20Section%20M.pdf)
+
+We will "control for" or treat these variables as "covariates" to adjust for these variables derived from [Study Form A Demographics](https://nhorton.people.amherst.edu/help/HELP-baseline%20Section%20A.pdf):
+
+* age - age of participant (in years)
+* female - gender of participant coded 0=male and 1=female
+* homeless - homeless 0=no, 1=yes
+
+_Note: Study Instruments and Documentation Linked at [https://nhorton.people.amherst.edu/help/](https://nhorton.people.amherst.edu/help/)_
+
+```{r subset}
+# library(dplyr)
+# create a smaller subset
+h1 <- helpdata %>%
+  select(cesd,
+         age,
+         female,
+         pss_fr,
+         homeless,
+         mcs,
+         pcs,
+         sexrisk,
+         indtot)
+```
+
+## Full versus Reduced ("adjusted") Models
+
+### Full Model - Summary Output
+
+```{r fullmodel}
+lmfull <- lm(cesd ~ age + female + homeless + 
+               pss_fr + mcs + pcs + sexrisk + indtot, 
+          data=h1)
+summary(lmfull)
+```
+
+### Full Model - `gtsummary::tbl_regression()` Output
+
+```{r fullgtsummary}
+# library(gtsummary)
+lmfull %>%
+  tbl_regression(
+    intercept = TRUE,
+    estimate_fun = ~ style_number(.x, digits = 3)
+  ) %>%
+  add_glance_table(
+    include = c(r.squared, 
+                adj.r.squared,
+                p.value)
+  )
+```
+
+### Reduced Model - Summary Output
+
+```{r adjmodel}
+lmadj <- lm(cesd ~ pss_fr + mcs + pcs + sexrisk + indtot, 
+          data=h1)
+summary(lmadj)
+```
+
+### Reduced Model - `gtsummary::tbl_regression()` Output
+
+```{r adjgtsummary}
+# library(gtsummary)
+lmadj %>%
+  tbl_regression(
+    intercept = TRUE,
+    estimate_fun = ~ style_number(.x, digits = 3)
+  ) %>%
+  add_glance_table(
+    include = c(r.squared, 
+                adj.r.squared,
+                p.value)
+  )
+```
+
+### Compare Full and Adjusted Models
+
+```{r compare}
+anova(lmfull, lmadj)
+```
+
+## Compare Full vs Reduced Models with `modelsummary` package
+
+### `modelsummary()` output
+
+```{r modelsummary}
+# library(modelsummary)
+models <- list(
+  "full" = lm(cesd ~ pss_fr + mcs + pcs + sexrisk + 
+                indtot, data=h1),
+  "adj" = lm(cesd ~ age + female + homeless + pss_fr + 
+               mcs + pcs + sexrisk + indtot, data=h1)
+)
+
+modelsummary(models, statistic = 'conf.int')
+```
+
+### `modelplot()` output
+
+The code shown below includes custom coloring using HEXCODES for colors. Many websites abound to find these codes - for example, [https://htmlcolorcodes.com/](https://htmlcolorcodes.com/).
+
+You can also pick from many different "builtin" colors to see the full list of colors type `colors()` in the RStudio "Console".
+
+```{r modelplot}
+# library(ggplot2)
+modelplot(models,
+          coef_omit = "(Intercept)|age|female|homeless",
+          coef_map = c("indtot" = "Inventory of \nDrug Use", 
+                       "sexrisk" = "Sex Risk Score",
+                       "pcs" = "Physical QOL",
+                       "mcs" = "Mental QOL",
+                       "pss_fr" = "Perceived Social Support \nfrom Friends")) +
+  labs(
+    caption = "MAIN model includes pss_fr + mcs + pcs + sexrisk \n ADJ model adjusted for age + female + homeless",
+    title = "Adjusted and Unadjusted Models for CESD"
+  ) +
+  # scale_color_manual(values = c("lightgreen",
+  #                               "skyblue4")) +
+  scale_color_manual(values = c("#27F52A",
+                                "#AA5CF7"))
+```
+
+

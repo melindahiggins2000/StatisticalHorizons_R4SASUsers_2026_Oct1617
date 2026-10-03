@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Setup - Preparation Before You Begin – StatisticalHorizons_R4SASUsers</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-17e5a23d094ee4d3ea1f9bf67e0e3d54.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-7da77de2dfa9788241e4a543f7dede9f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+</head>
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Setup.html">Setup Instructions</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./r4saslogo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="./r4saslogo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
+      <div class="sidebar-tools-main">
+    <a href="https://melindahiggins2000.github.io/StatisticalHorizons_R4SASUsers/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
+    <a href="https://github.com/melindahiggins2000/emory_tidal_Rlectures" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Setup.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Setup Instructions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./module_d1_01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 1 Session 1: Introduction to R &amp; R Studio; Getting Started with Data and Code</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./module_d1_02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 1 Session 2: Data Wrangling and Visualization</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./d1_homework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 1 Homework Exercises</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./module_d2_01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 2 Session 1: More Data Wrangling, Statistical Tests and Models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./module_d2_02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 2 Session 2: Reproducible Research and Reporting</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./d2_homework.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 2 Homework Exercises</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./additionalResources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Additional Help and Resources</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#steps-needed-to-get-started" id="toc-steps-needed-to-get-started" class="nav-link active" data-scroll-target="#steps-needed-to-get-started">Steps needed to get started</a></li>
+  <li>
+<a href="#install-r" id="toc-install-r" class="nav-link" data-scroll-target="#install-r">1. Install R</a>
+  <ul>
+<li><a href="#download-r-from-cran" id="toc-download-r-from-cran" class="nav-link" data-scroll-target="#download-r-from-cran">Download R from CRAN</a></li>
+  <li><a href="#other-helpful-resources-for-installing-r" id="toc-other-helpful-resources-for-installing-r" class="nav-link" data-scroll-target="#other-helpful-resources-for-installing-r">Other Helpful Resources For Installing R</a></li>
+  </ul>
+</li>
+  <li><a href="#install-rstudio-desktop" id="toc-install-rstudio-desktop" class="nav-link" data-scroll-target="#install-rstudio-desktop">2. Install RStudio Desktop</a></li>
+  <li>
+<a href="#install-r-packages-needed-for-course" id="toc-install-r-packages-needed-for-course" class="nav-link" data-scroll-target="#install-r-packages-needed-for-course">3. Install R Packages Needed for Course</a>
+  <ul>
+<li><a href="#learn-more-about-installing-r-packages" id="toc-learn-more-about-installing-r-packages" class="nav-link" data-scroll-target="#learn-more-about-installing-r-packages">Learn More About Installing R Packages</a></li>
+  </ul>
+</li>
+  <li><a href="#run-quick-check" id="toc-run-quick-check" class="nav-link" data-scroll-target="#run-quick-check">4. Run Quick Check</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#other-helpful-resources" id="toc-other-helpful-resources" class="nav-link" data-scroll-target="#other-helpful-resources">Other Helpful Resources</a></li>
+  </ul><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Setup.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Setup - Preparation Before You Begin</h1>
+<p class="subtitle lead">Install R, RStudio and Packages</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><section id="steps-needed-to-get-started" class="level2"><h2 class="anchored" data-anchor-id="steps-needed-to-get-started">Steps needed to get started</h2>
+<ol type="1">
+<li>Install R</li>
+<li>Install RStudio Desktop</li>
+<li>Install R Packages</li>
+<li>Run a quick test</li>
+</ol>
+<hr></section><section id="install-r" class="level2"><h2 class="anchored" data-anchor-id="install-r">1. Install R</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>R versus RStudio
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note: <a href="https://cran.r-project.org/" target="_blank"><strong>R</strong></a> is the name of the programming language itself and <a href="https://posit.co/download/rstudio-desktop/" target="_blank"><strong>RStudio</strong></a> is an integrated development environment (IDE) which is an enhanced interface for better organization, files management and analysis workflows.</p>
+</div>
+</div>
+<section id="download-r-from-cran" class="level3"><h3 class="anchored" data-anchor-id="download-r-from-cran">Download R from CRAN</h3>
+<p>The R programming language is maintained and distributed by CRAN <a href="https://cran.r-project.org/">The Comprehensive R Archive Network</a>. They provide the installers for the binary distributions of the base system and contributed packages. R is FREE!</p>
+<p>Installation Instructions are provided for these operating systems:</p>
+<ul>
+<li>
+<a href="https://cran.r-project.org/bin/windows/">Windows</a>
+<ul>
+<li>Choose “base” and I suggest you accept the default installation options.</li>
+<li>OPTIONAL - You may also want “RTools” if you think you may want to do build your own R packages in the future. This is NOT needed for this course.</li>
+</ul>
+</li>
+<li>
+<a href="https://cran.r-project.org/bin/macosx/">Mac</a>
+<ul>
+<li>Please make note of the specific details on which installer you may need for your version of Mac OS (operating system).</li>
+<li>I work on a Windows operating system, so please reach out to your local IT support for help getting the correct version installed for your system.</li>
+</ul>
+</li>
+<li>
+<a href="https://cran.r-project.org/bin/linux/">Linux</a>
+<ul>
+<li>Odds are you are probably using either Windows or Mac OS, but if you using Linux, please read carefully the specific details for your version of Linux.</li>
+</ul>
+</li>
+</ul>
+<p><img src="installR/slide1.png" class="img-fluid"></p>
+</section><section id="other-helpful-resources-for-installing-r" class="level3"><h3 class="anchored" data-anchor-id="other-helpful-resources-for-installing-r">Other Helpful Resources For Installing R</h3>
+<ul>
+<li>
+<a href="https://moderndive.com/v2/getting-started.html">Chapter 1 of Statistical Inference via Data Science: A ModernDive into R and the Tidyverse <em>(Second Edition)</em></a> by Chester Ismay, Albert Y. Kim, and Arturo Valdivia.</li>
+<li><a href="https://epirhandbook.com/en/new_pages/basics.html#installation">Chapter 3.4 of The Epidemiologist R Handbook</a></li>
+</ul>
+<hr>
+<div style="page-break-after: always;"></div>
+</section></section><section id="install-rstudio-desktop" class="level2"><h2 class="anchored" data-anchor-id="install-rstudio-desktop">2. Install RStudio Desktop</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Install R First and RStudio Second
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is important to install the R programming language FIRST. I also encourage you to use the default installation options, so that when you install the RStudio Desktop application, it will “know” where (folder locations) to look for your R installation.</p>
+</div>
+</div>
+<p>The RStudio IDE (integrated development environment) software is developed and distributed by the <a href="https://posit.co/about">POSIT Company</a>, which was formerly known as “RStudio” founded in 2009. In 2022 they changed their name to “Posit”, however, the name of the software application stayed “RStudio”.</p>
+<p>For this course, we will be using the RStudio Desktop software. RStudio Desktop is FREE. The “PRO” version does cost money.</p>
+<p>You can download RStudio Desktop from <a href="https://posit.co/download/rstudio-desktop/" target="_blank">https://posit.co/download/rstudio-desktop/</a>.</p>
+<p>I think the website link above will “autodetect” which operating system you have. Mine defaults to the Windows installer.</p>
+<p><img src="installR/slide4.png" class="img-fluid"></p>
+<p><img src="installR/slide5.png" class="img-fluid"></p>
+<p>However, if you have a Mac you should get the installer for the Mac OS. Regardless, you can always choose the operating system and version you need.</p>
+<p><img src="installR/slide6.png" class="img-fluid"></p>
+<p><img src="installR/slide7.png" class="img-fluid"></p>
+<p>And if you keep scrolling down the webpage you can find older versions of RStudio if/as needed as well.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>RStudio or Positron?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For this course, I will use the RStudio IDE. However, there is a newer alternative to “RStudio”, known as “Positron” which was released in 2025.</p>
+<p>Learn more about <a href="https://positron.posit.co/">Positron</a>. Positron is also an IDE programming environment, but is designed to accommodate multiple programming environments and multiple sessions at the same time, e.g.&nbsp;you can run both R and Python and manage multiple versions at one time. We will NOT cover these details in this course.</p>
+<p>Technically, you can also use the RStudio IDE to execute and manage Python programs as well. In fact RStudio can help manage several other programming languages as well.</p>
+<p><strong>User Guides</strong></p>
+<ul>
+<li>
+<a href="https://docs.posit.co/ide/user/">RStudio User Guide</a>.</li>
+<li><a href="https://positron.posit.co/welcome.html">Positron User Guide</a></li>
+</ul>
+</div>
+</div>
+<hr>
+<div style="page-break-after: always;"></div>
+</section><section id="install-r-packages-needed-for-course" class="level2"><h2 class="anchored" data-anchor-id="install-r-packages-needed-for-course">3. Install R Packages Needed for Course</h2>
+<p>For this course, you will need to have the following packages installed on your computer. All of these packages are available from <a href="https://cran.r-project.org/">CRAN</a>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>R Packages on CRAN
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>As of 05/16/2026 at approximately 11:00 am EDT USA time, there are currently 23668 packages hosted on CRAN. More get added everyday!</p>
+</div>
+</div>
+<p><img src="installR/slide2.png" class="img-fluid"></p>
+<p><img src="installR/slide3.png" class="img-fluid"></p>
+<div style="page-break-after: always;"></div>
+<p>For this course, you will need these 16 packages:</p>
+<ol type="1">
+<li>
+<a href="https://tidyverse.org/packages/"><code>tidyverse</code></a> which includes a suite of 9 packages (and a few others as well) that are all installed at the same time:
+<ul>
+<li><a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a></li>
+<li><a href="https://dplyr.tidyverse.org/"><code>dplyr</code></a></li>
+<li><a href="https://tidyr.tidyverse.org/"><code>tidyr</code></a></li>
+<li><a href="https://readr.tidyverse.org/"><code>readr</code></a></li>
+<li><a href="https://purrr.tidyverse.org/"><code>purrr</code></a></li>
+<li><a href="https://tibble.tidyverse.org/"><code>tibble</code></a></li>
+<li><a href="https://stringr.tidyverse.org/"><code>stringr</code></a></li>
+<li><a href="https://forcats.tidyverse.org/"><code>forcats</code></a></li>
+<li><a href="https://lubridate.tidyverse.org/"><code>lubridate</code></a></li>
+<li>
+<a href="https://haven.tidyverse.org/"><code>haven</code></a> - <em>this package is included in tidyvers</em>
+</li>
+</ul>
+</li>
+<li><a href="https://wilkelab.org/ggtext/"><code>ggtext</code></a></li>
+<li>
+<a href="https://easystats.github.io/easystats/"><code>easystats</code></a> which is also a suite of 10 packages:
+<ul>
+<li><a href="https://easystats.github.io/effectsize/"><code>effectsize</code></a></li>
+<li><a href="https://easystats.github.io/report/"><code>report</code></a></li>
+<li><a href="https://easystats.github.io/correlation/"><code>correlation</code></a></li>
+<li><a href="https://easystats.github.io/modelbased/"><code>modelbased</code></a></li>
+<li><a href="https://easystats.github.io/bayestestR/"><code>bayestestR</code></a></li>
+<li><a href="https://easystats.github.io/see/"><code>see</code></a></li>
+<li><a href="https://easystats.github.io/parameters/"><code>parameters</code></a></li>
+<li><a href="https://easystats.github.io/performance/"><code>performance</code></a></li>
+<li><a href="https://easystats.github.io/insight/"><code>insight</code></a></li>
+<li><a href="https://easystats.github.io/datawizard/"><code>datawizard</code></a></li>
+</ul>
+</li>
+<li><a href="https://cran.r-project.org/web/packages/gmodels/index.html"><code>gmodels</code></a></li>
+<li><a href="https://www.danieldsjoberg.com/gtsummary/"><code>gtsummary</code></a></li>
+<li><a href="https://cran.r-project.org/web/packages/effects/index.html"><code>effects</code></a></li>
+<li><a href="https://rvlenth.github.io/emmeans/"><code>emmeans</code></a></li>
+<li><a href="https://broom.tidymodels.org/"><code>broom</code></a></li>
+<li><a href="https://rmarkdown.rstudio.com/"><code>rmarkdown</code></a></li>
+<li><a href="https://yihui.org/knitr/"><code>knitr</code></a></li>
+<li>
+<a href="https://yihui.org/tinytex/"><code>tinytex</code></a> - <em>OPTIONAL - needed to “knit to PDF”</em>
+</li>
+<li><a href="https://olsrr.rsquaredacademy.com/"><code>olsrr</code></a></li>
+<li><a href="https://modelsummary.com/"><code>modelsummary</code></a></li>
+<li><a href="https://sfirke.github.io/janitor/"><code>janitor</code></a></li>
+<li><a href="https://r-datatable.com/"><code>data.table</code></a></li>
+<li><a href="https://mayoverse.github.io/arsenal/"><code>arsenal</code></a></li>
+</ol>
+<div style="page-break-after: always;"></div>
+<p>To install these packages, the easiest way is to use the RStudio Menu “Tools/Install” Packages interface:</p>
+<p>For example, let’s install a “new” R package, like <code>ggplot2</code>.</p>
+<p>Go to the RStudio menu “Tools/Install” Packages</p>
+<p><img src="rscript01_installpkg.png" class="img-fluid"></p>
+<div style="page-break-after: always;"></div>
+<p>This will then open up a window where you can type in the name of the package you want. As soon as we start typing <code>ggplot2</code> the menu begins listing all packages with that partial spelling…</p>
+<p><img src="rscript01_installcran.png" class="img-fluid"></p>
+<div style="page-break-after: always;"></div>
+<p>You’ll notice that there are 3 parts to the installation:</p>
+<ol type="1">
+<li>Where you want to get the package from <em>(i.e., which repository - more on repositories later in this course)</em>.</li>
+<li>The name of the package. You can actually type more than one package name at a time separated by commas if you want to install several packages at once.</li>
+<li>The file location on your computer where the new package is installed - your file location will be different than mine. But this is useful to know in case something goes wrong. <strong>I would suggest keeping the default settings.</strong>
+</li>
+</ol>
+<p><img src="ggplot2install3parts.png" class="img-fluid"></p>
+<div style="page-break-after: always;"></div>
+<p>After installing <code>ggplot2</code> you should see <code>ggplot2</code> listed under the Packages window:</p>
+<p><img src="ggplot2packagelist.png" class="img-fluid"></p>
+<p>Repeat this process to install the rest of the R packages needed.</p>
+<div style="page-break-after: always;"></div>
+<p>Note: You can also confirm the installation of the R packages on your computer by going to the folder listed under #3 “Install to library” path listed above – on my computer my R packages are in this folder on my computer <code>C:\Users\mkhiggi\AppData\Local\R\win-library\4.6</code>.</p>
+<p><img src="ggplot2oncomputer.png" class="img-fluid"></p>
+<section id="learn-more-about-installing-r-packages" class="level3"><h3 class="anchored" data-anchor-id="learn-more-about-installing-r-packages">Learn More About Installing R Packages</h3>
+<ul>
+<li><a href="https://moderndive.com/v2/getting-started.html#packages">Chapter 1.3 in Statistical Inference via Data Science: A ModernDive into R and the Tidyverse <em>(Second Edition)</em></a></li>
+</ul>
+<hr>
+<div style="page-break-after: always;"></div>
+</section></section><section id="run-quick-check" class="level2"><h2 class="anchored" data-anchor-id="run-quick-check">4. Run Quick Check</h2>
+<p>Let’s confirm that your installation of R, RStudio and your packages are working. For example, let’s test that your installation of <code>ggplot2</code> is working. Run the following R code as a quick test.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">pressure</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">temperature</span>, <span class="va">pressure</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><img src="Setup_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>CONGRATULATIONS</strong> You should be good to go!</p>
+<hr>
+<div style="page-break-after: always;"></div>
+</section><section id="references" class="level2"><h2 class="anchored" data-anchor-id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-lubridate2011" class="csl-entry" role="listitem">
+Grolemund, Garrett, and Hadley Wickham. 2011. <span>“Dates and Times Made Easy with <span class="nocase">lubridate</span>.”</span> <em>Journal of Statistical Software</em> 40 (3): 1–25. <a href="https://www.jstatsoft.org/v40/i03/">https://www.jstatsoft.org/v40/i03/</a>.
+</div>
+<div id="ref-R-tibble" class="csl-entry" role="listitem">
+Müller, Kirill, and Hadley Wickham. 2026. <em>Tibble: Simple Data Frames</em>. <a href="https://tibble.tidyverse.org/">https://tibble.tidyverse.org/</a>.
+</div>
+<div id="ref-R-base" class="csl-entry" role="listitem">
+R Core Team. 2026. <em>R: A Language and Environment for Statistical Computing</em>. R Foundation for Statistical Computing. <a href="https://doi.org/10.32614/R.manuals">https://doi.org/10.32614/R.manuals</a>.
+</div>
+<div id="ref-R-lubridate" class="csl-entry" role="listitem">
+Spinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2023. <em>Lubridate: Make Dealing with Dates a Little Easier</em>. <a href="https://lubridate.tidyverse.org">https://lubridate.tidyverse.org</a>.
+</div>
+<div id="ref-ggplot22016" class="csl-entry" role="listitem">
+Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
+</div>
+<div id="ref-R-tidyverse" class="csl-entry" role="listitem">
+Wickham, Hadley. 2023. <em>Tidyverse: Easily Install and Load the Tidyverse</em>. <a href="https://tidyverse.tidyverse.org">https://tidyverse.tidyverse.org</a>.
+</div>
+<div id="ref-R-forcats" class="csl-entry" role="listitem">
+Wickham, Hadley. 2025a. <em>Forcats: Tools for Working with Categorical Variables (Factors)</em>. <a href="https://forcats.tidyverse.org/">https://forcats.tidyverse.org/</a>.
+</div>
+<div id="ref-R-stringr" class="csl-entry" role="listitem">
+Wickham, Hadley. 2025b. <em>Stringr: Simple, Consistent Wrappers for Common String Operations</em>. <a href="https://stringr.tidyverse.org">https://stringr.tidyverse.org</a>.
+</div>
+<div id="ref-tidyverse2019" class="csl-entry" role="listitem">
+Wickham, Hadley, Mara Averick, Jennifer Bryan, et al. 2019. <span>“Welcome to the <span class="nocase">tidyverse</span>.”</span> <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
+</div>
+<div id="ref-R-ggplot2" class="csl-entry" role="listitem">
+<span class="nocase">Wickham, Hadley, Winston Chang, Lionel Henry, et al.</span> 2025. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
+</div>
+<div id="ref-R-dplyr" class="csl-entry" role="listitem">
+Wickham, Hadley, Romain François, Lionel Henry, Kirill Müller, and Davis Vaughan. 2026. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://dplyr.tidyverse.org">https://dplyr.tidyverse.org</a>.
+</div>
+<div id="ref-R-purrr" class="csl-entry" role="listitem">
+Wickham, Hadley, and Lionel Henry. 2025. <em>Purrr: Functional Programming Tools</em>. <a href="https://purrr.tidyverse.org/">https://purrr.tidyverse.org/</a>.
+</div>
+<div id="ref-R-readr" class="csl-entry" role="listitem">
+Wickham, Hadley, Jim Hester, and Jennifer Bryan. 2026. <em>Readr: Read Rectangular Text Data</em>. <a href="https://readr.tidyverse.org">https://readr.tidyverse.org</a>.
+</div>
+<div id="ref-R-tidyr" class="csl-entry" role="listitem">
+Wickham, Hadley, Davis Vaughan, and Maximilian Girlich. 2025. <em>Tidyr: Tidy Messy Data</em>. <a href="https://tidyr.tidyverse.org">https://tidyr.tidyverse.org</a>.
+</div>
+</div>
+</section><section id="other-helpful-resources" class="level2"><h2 class="anchored" data-anchor-id="other-helpful-resources">Other Helpful Resources</h2>
+<p><a href="./additionalResources.html" target="_blank"><strong>Other Helpful Resources</strong></a></p>
+
+
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/melindahiggins2000\.github\.io\/StatisticalHorizons_R4SASUsers\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">
+<p><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="https://img.shields.io/badge/License-CC_BY--NC--ND_4.0-lightgrey.svg" class="img-fluid"></a></p>
+</div>   
+    <div class="nav-footer-center">
+<p>Copyright 2025, <a href="https://melindahiggins.netlify.app/">Melinda Higgins, PhD.</a> <a href="https://www.linkedin.com/in/melindahiggins2000/"><i class="fa-brands fa-linkedin" aria-label="linkedin"></i></a> <a href="https://scholar.google.com/citations?user=-4aU-VkAAAAJ&amp;hl=en"><i class="fa-brands fa-google-scholar" aria-label="google-scholar"></i></a> <a href="https://github.com/melindahiggins2000"><i class="fa-brands fa-github" aria-label="github"></i></a> <a href="mailto:mkhiggi@emory.edu"><i class="fa-solid fa-envelope" aria-label="envelope"></i></a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+</body></html>
