@@ -1,0 +1,67 @@
+---
+title: "1.3.6: Putting Reproducible Research Principles Into Practice"
+subtitle: "(In Person)"
+bibliography: ./packages.bib
+nocite: |
+  @*
+format:
+  html: default
+  pdf: default
+editor_options: 
+  chunk_output_type: console
+---
+
+\thispagestyle{fancy}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      error = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
+knitr::opts_chunk$set(
+  comment = '', fig.width = 6, fig.height = 6
+)
+```
+
+## Session Objectives
+
+1. Discuss reproducible research principles.
+2. Apply reproducible research principles to data analysis using R Markdown.
+
+Key points that will be covered:
+
+1. Reproducible research principles
+2. What is R Markdown
+3. How to create a report using R Markdown
+    - Customize the layout of presentations or reports
+    - Insert and create objects, such as tables, images, or videos, within a document
+
+### In Person - Summer 2025
+
+During the in person session we will work through creating and using Rmarkdown to combine report text, R code and output seamlessly to create reproducible analysis reports.
+
+We will be working with the [PRAMS Report example](prams_report.html) in class. Also see complete details in the [PRAMS Module - section 7 on Reproducible Research Report](prams#prams-reproducible-research-report).
+
+---
+
+\newpage
+
+```{r echo=FALSE}
+knitr::write_bib(x = c(.packages()), 
+                 file = "packages.bib")
+```
+
+## RMarkdown Code For This Module
+
+* [`prams_report.Rmd`](prams_report.Rmd)
+
+## References
+
+::: {#refs}
+:::
+
+## Other Helpful Resources
+
+[**Other Helpful Resources**](./additionalResources.html){target="_blank"}
+
+

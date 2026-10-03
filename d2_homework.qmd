@@ -1,0 +1,47 @@
+---
+title: "Day 2: Homework"
+bibliography: ./packages.bib
+nocite: |
+  @*
+format:
+  html: default
+  pdf: default
+editor_options: 
+  chunk_output_type: console
+---
+
+\thispagestyle{fancy}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      error = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
+knitr::opts_chunk$set(
+  comment = '', fig.width = 6, fig.height = 6
+)
+```
+
+## Homework Day 2
+
+* Download [`d2_homework.R`](./d2_homework.R) and follow the instructions to complete each exercise.
+* After working on the exercises, you can review the answer key [`d2_homework_key.R`](./d2_homework_key.R)
+
+---
+
+\newpage
+
+```{r echo=FALSE}
+knitr::write_bib(x = c(.packages()), 
+                 file = "packages.bib")
+```
+
+## References
+
+::: {#refs}
+:::
+
+## Other Helpful Resources
+
+[**Other Helpful Resources**](./additionalResources.html){target="_blank"}
+

@@ -1,0 +1,54 @@
+---
+title: "Compare SAS and R day 1 session 2"
+format: html
+---
+
+## columns
+
+::::: {layout-ncol="2"}
+::: {}
+## SAS Codes
+
+Content for the first column.
+
+```
+libname rforsas 'C:\R4SASUsers';
+```
+
+:::
+
+::: {}
+## R Codes
+
+Content for the second column.
+
+```r
+getwd()
+```
+
+:::
+:::::
+
+::::: {layout-ncol="2"}
+::: {}
+
+```
+* make a copy to WORK library;
+data help;
+  set rforsas.help;
+  run;
+```
+
+:::
+
+::: {}
+
+```r
+library(haven)
+helpmkh <- read_sas("help.sas7bdat", NULL)
+```
+
+:::
+:::::
+
+

@@ -1,0 +1,74 @@
+---
+title: "About"
+subtitle: "(Asynchronous-Online)"
+bibliography: ./packages.bib
+nocite: |
+  @*
+format:
+  html: default
+  pdf: default
+editor_options: 
+  chunk_output_type: console
+---
+
+\thispagestyle{fancy}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      error = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
+knitr::opts_chunk$set(
+  comment = '', fig.width = 6, fig.height = 6
+)
+```
+
+## About this site
+
+```{r}
+1 + 1
+```
+
+\newpage
+
+## Introduction
+
+more info here
+
+```{r}
+library(car)
+
+plot(mtcars$mpg, mtcars$wt)
+```
+
+
+---
+
+\newpage
+
+```{r echo=FALSE}
+knitr::write_bib(x = c(.packages()), 
+                 file = "packages.bib")
+```
+
+## Slides
+
+* [TestSlides](./testslides.html)
+
+## R Code For This Module
+
+* [`module_131.R`]()
+* [`Rscript_01.R`]()
+
+## References
+
+::: {#refs}
+:::
+
+## Other Helpful Resources
+
+[**Other Helpful Resources**](./additionalResources.html){target="_blank"}
+
+
+
+

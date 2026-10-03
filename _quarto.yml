@@ -1,0 +1,98 @@
+project:
+  type: website
+  output-dir: docs
+  render: 
+    - "*.qmd"
+    - "!archived/"
+    - "!slides/"
+    - "!cleandemo/"
+    - "!sascodes/"
+
+website:
+  title: "StatisticalHorizons_R4SASUsers"
+  site-url: https://melindahiggins2000.github.io/StatisticalHorizons_R4SASUsers/
+  description: "R for SAS Users - Statistical Horizons"
+  
+  sidebar:
+    search: true
+    logo: r4saslogo.png
+    pinned: true
+    align: center
+    background: "#1223A3"
+    tools: 
+      - icon: house-fill
+        href: https://melindahiggins2000.github.io/StatisticalHorizons_R4SASUsers/
+      - icon: github
+        href: https://github.com/melindahiggins2000/emory_tidal_Rlectures
+    
+    style: "docked"
+    contents:
+      - href: index.qmd
+        text: Home
+      - href: Setup.qmd
+        text: "Setup Instructions"
+      - href: module_d1_01.qmd
+        text: "Day 1 Session 1: Introduction to R & R Studio; Getting Started with Data and Code"
+      - href: module_d1_02.qmd
+        text: "Day 1 Session 2: Data Wrangling and Visualization"
+      - href: d1_homework.qmd
+        text: "Day 1 Homework Exercises"
+      - href: module_d2_01.qmd
+        text: "Day 2 Session 1: More Data Wrangling, Statistical Tests and Models"
+      - href: module_d2_02.qmd
+        text: "Day 2 Session 2: Reproducible Research and Reporting"
+      - href: d2_homework.qmd
+        text: "Day 2 Homework Exercises"
+      - href: additionalResources.qmd
+        text: "Additional Help and Resources"
+
+  page-footer:
+    background: light
+    left: "[![](https://img.shields.io/badge/License-CC_BY--NC--ND_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)"
+    center: "Copyright 2025, [Melinda Higgins, PhD.](https://melindahiggins.netlify.app/) [{{< fa brands linkedin >}}](https://www.linkedin.com/in/melindahiggins2000/)  [{{< fa brands google-scholar >}}](https://scholar.google.com/citations?user=-4aU-VkAAAAJ&hl=en)  [{{< fa brands github >}}](https://github.com/melindahiggins2000)  [{{< fa envelope >}}](mailto:mkhiggi@emory.edu)"
+
+format:
+  html:
+    theme: 
+      - cosmo
+      - mkh_styles.scss
+    mainfont: Nunito
+    toc: true
+    toc-depth: 4
+    page-layout: full
+    code-link: true
+    knitr:
+      opts_chunk:
+        message: false
+        warning: false
+        
+  pdf:
+    latex-auto-install: false
+    include-in-header: 
+      text: |
+        \usepackage{fancyhdr}
+        \pagestyle{fancy}
+        \renewcommand{\footrulewidth}{0.4pt}
+        \setlength{\headsep}{50pt}
+        \fancyhead[L]{\includegraphics[width=1cm]{r4saslogo.png} \href{https://melindahiggins2000.github.io/StatisticalHorizons_R4SASUsers/}{}}
+        \fancyhead[R]{R for SAS Users}
+        \fancyfoot[L]{\href{https://creativecommons.org/licenses/by-nc-nd/4.0/}{\includegraphics[width=2cm]{cc_by_nc_nd.png}}}
+        \fancyfoot[C]{\url{https://tinyurl.com/r4sasusers}}
+        \fancyfoot[R]{\thepage}
+        \usepackage{longtable}
+        \usepackage{fvextra}
+        \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+        \DefineVerbatimEnvironment{OutputCode}{Verbatim}{breaklines,commandchars=\\\{\}}
+        \usepackage{lscape}
+        \newcommand{\blandscape}{\begin{landscape}}
+        \newcommand{\elandscape}{\end{landscape}}
+    include-before-body:
+      text: |
+        \RecustomVerbatimEnvironment{verbatim}{Verbatim}{
+          showspaces = false,
+          showtabs = false,
+          breaksymbolleft={},
+          breaklines
+          % Note: setting commandchars=\\\{\} here will cause an error 
+        }
+

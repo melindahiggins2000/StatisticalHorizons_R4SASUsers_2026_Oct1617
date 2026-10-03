@@ -1,0 +1,6 @@
+---
+title: "test"
+bibliography: references.bib
+---
+
+add citation, [@samet2003]

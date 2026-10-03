@@ -1,0 +1,37 @@
+---
+title: "R for SAS Users"
+---
+
+\thispagestyle{fancy}
+
+## Two-Day Online Course (4 sessions total)
+
+Presented by [Melinda Higgins, PhD](https://melindahiggins.netlify.app/)
+
+This course is specifically designed for SAS users who want to learn R for statistics and data analysis and visualization. While this course will get you started transitioning from SAS to R, it will go beyond just “translating SAS code to R.” You’ll also learn the power of the R language and the immense open source R programming community.
+
+The course will cover the RStudio computing environment, importing and exporting data, data wrangling, visualization, descriptive statistics, and an introduction to modeling. Each lesson will provide a detailed crosswalk of SAS procedures to R functions with specific attention to the similarities and differences (especially related to default settings).
+
+The course will end with a brief introduction to R Markdown and Quarto for writing automated reproducible analysis reports. You will leave with plenty of analysis examples with R code and workflow pipelines you can apply immediately to your projects.
+
+The 4 sessions are:
+
+* **DAY 1**
+    - [Introduction to R & R Studio; Getting Started with Data and Code](./module_d1_01.html)
+    - [Data Wrangling and Visualization](./module_d1_02.html)
+
+* **DAY 2**
+    - [More Data Wrangling, Statistical Tests and Models](./module_d2_01.html)
+    - [Reproducible Research and Reporting](./module_d2_02.html)
+
+---
+
+## More Details on Course Content
+
+The first day of the course will begin by immediately getting you comfortable with the computing environment, writing R code, and working with datasets and variables. We will cover data manipulation and wrangling issues, which will introduce you to the tidyverse suite of R packages. Day 1 will also get you started with the ggplot2 package, which applies the “grammar of graphics” principles for data visualization.
+
+The second day of the course will cover additional data merging procedures, including column-wise inner, outer, left and right-joins, and row-wise dataset concatenation. We will also cover statistical hypothesis tests and modeling approaches (ANOVA, linear and logistic regression). Along with these methods, R packages will be covered which are helpful for manipulating model output objects for interpretation and visualization. Time permitting, Day 2 will end with a brief introduction to creating “reproducible reports” using R Markdown and Quarto.
+
+The course will intersperse lecture with slides with hands-on active learning modules. You are encouraged to write code and work through the examples in class with immediate help from the instructor. Take-home exercises will be provided at the end of each day for you to try on your own. We will review the Day 1 take-home exercises at the beginning of Day 2 and the Day 2 take-home “answer key” code will be provided.
+
+---

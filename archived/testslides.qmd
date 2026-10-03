@@ -1,0 +1,26 @@
+---
+title: "slidestest"
+format: 
+  revealjs: default
+  pdf: default
+---
+
+
+## About this site
+
+```{r}
+1 + 1
+```
+
+\newpage
+
+## more info
+
+more info here
+
+```{r}
+library(car)
+
+plot(mtcars$mpg, mtcars$wt)
+```
+

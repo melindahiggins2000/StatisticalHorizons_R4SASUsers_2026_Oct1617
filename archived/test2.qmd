@@ -1,0 +1,22 @@
+---
+title: "test2"
+---
+
+## let's look at some output
+
+```{r}
+lm1 <- lm(mpg ~ cyl + disp + hp, 
+          data = mtcars)
+```
+
+::: {.landscape}
+
+```{r}
+library(olsrr)
+olsrr::ols_regress(lm1)
+```
+
+:::
+
+
+

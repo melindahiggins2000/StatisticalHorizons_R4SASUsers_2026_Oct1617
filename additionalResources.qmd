@@ -1,0 +1,138 @@
+---
+title: "Additional Help and Resources"
+format:
+  html: default
+  pdf: default
+editor_options: 
+  chunk_output_type: console
+---
+
+\thispagestyle{fancy}
+
+## R and RStudio Resources
+
+### R
+
+* [Download: R from CRAN](https://cran.r-project.org/)
+    - This is where you can download the R language software for FREE for your own computer.
+    - Choose your operating system (Mac OS or Windows or Linux/Unix)
+    - NOTE: For Windows, you should also download and install [Rtools](https://cran.r-project.org/bin/windows/) - this is technically optional, but is useful to have. Make sure to download the one for your R version.
+* [R Cookbook](https://rc2e.com/)
+    
+### RStudio
+
+* [Download: RStudio IDE Desktop](https://www.rstudio.com/products/rstudio/download/#download)
+    - Note: Windows is listed at the top - just scroll down to see the installer for the Mac OS as well. There are also installers for the versions of Linux/Unix.
+* [RStudio Education](https://education.rstudio.com/)
+* [RStudio Cloud Tutorials](https://rstudio.cloud/learn/primers)
+* [** Quick-R **](https://www.statmethods.net/)
+
+## Crosswalking from SAS to R
+
+* [The `sassy` package - "making R easy for SAS programmers"](https://sassy.r-sassy.org/)
+* [SAS-to-R Cheatsheet](https://github.com/brendanjodowd/SAS-R/blob/master/sas-r.pdf)
+* [SAS-vs-R in Pharma Cheatsheet](https://rstudio.github.io/cheatsheets/SASvsRinPharma.pdf)
+* [R for SAS Users Tutorial](https://r-statistics.co/R-for-SAS-Users.html)
+* [`PROC R` to run R code in SAS](https://communities.sas.com/t5/SAS-Communities-Library/Introducing-PROC-R-The-Newest-Way-to-Integrate-R-and-SAS-Part-1/ta-p/985832)
+* [Posit Blog 2013 - Learn R as a SAS Users](https://posit.co/blog/how-to-learn-r-as-a-sas-user)
+* [Writing SAS MACROs in R - PharmaSUG 2025 paper](https://pharmasug.org/proceedings/2025/AP/PharmaSUG-2025-AP-078.pdf)
+
+## R Graphics
+
+* [Book: `ggplot2`](https://ggplot2-book.org/)
+* [R Graphics Cookbook - online book](https://r-graphics.org/)
+* [Cookbook for R (graphics) - earlier version](http://www.cookbook-r.com/Graphs/)
+* [R Graph Gallery](https://r-graph-gallery.com/)
+* [Book: R Graphics, 3rd edition by Paul Murrell](https://www.routledge.com/R-Graphics-Third-Edition/Murrell/p/book/9780367780692) and accompanying [R Graphics - book website](https://www.stat.auckland.ac.nz/~paul/RG3e/)
+* [R Charts Website](https://r-charts.com/)
+* [Book: Interactive web-based data visualization with R, plotly, and shiny](https://plotly-r.com/)
+* [Book: R For Data Science - Layers](https://r4ds.hadley.nz/layers)
+* [Book: The Epidemiologist R Handbook - Data Visualization Section](https://epirhandbook.com/en/new_pages/tables_presentation.html)
+
+## R Packages for Tables
+
+### Making Tables _(without Rmarkdown)_
+
+* The `table()` function, run `help(table, package = "base")`
+* [`gtsummary`](https://www.danieldsjoberg.com/gtsummary/)
+* [`gmodels`](https://cran.r-project.org/web/packages/gmodels/index.html), see `CrossTable()` function
+
+### Rmarkdown Tables
+
+* [`gt`](https://gt.rstudio.com/)
+* [`gmodels`](https://cran.r-project.org/web/packages/gmodels/index.html)
+* [`gtsummary`](https://www.danieldsjoberg.com/gtsummary/)
+* [`arsenal`](https://mayoverse.github.io/arsenal/)
+* [`huxtable`](https://cran.r-project.org/web/packages/huxtable/index.html)
+* [`flextable`](https://ardata-fr.github.io/flextable-book/index.html#help-and-resources)
+
+### Tables with Graphics
+
+* [R Gallery Tables Summary](https://r-graph-gallery.com/table.html)
+* [`gtExtras`](https://jthomasmock.github.io/gtExtras/index.html)
+* [`skimr`](https://docs.ropensci.org/skimr/)
+
+## RMarkdown Resources
+
+* [Rmarkdown Tutorial](https://rmarkdown.rstudio.com/lesson-1.html)
+* [Book: R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+* [Book: R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/)
+
+## Quarto Resources
+
+* [Quarto](https://quarto.org/)
+* [Quarto User Guide](https://quarto.org/docs/guide/)
+* [Chapter 28 Quarto in "R for Data Science (2e)"](https://r4ds.hadley.nz/quarto.html)
+
+## Online Training and Courses
+
+* [Code Academy](https://www.codecademy.com/learn/learn-r)
+* [Software Carpentry](https://swcarpentry.github.io/r-novice-inflammation/)
+* [swiRl - Learn R in R](https://swirlstats.com/)
+* [Datacamp](https://www.datacamp.com/)
+    - [R for SAS Users - My Datacamp Course](https://www.datacamp.com/courses/r-for-sas-users)
+* [Coursera](https://www.coursera.org/)
+    - [Reproducible Templates for Analysis and Dissemination - My Coursera Course](https://www.coursera.org/learn/reproducible-templates-analysis)
+* My Courses at Emory:
+    - [Emory N741](https://melindahiggins2000.github.io/N741bigdata/)
+    - [Emory N736](https://melindahiggins2000.github.io/N736/)
+
+## More Helpful Online Books on R and Statistics with R
+
+* [Book: SAS and R: Data Management, Statistical Analysis, and Graphics (second edition)](https://nhorton.people.amherst.edu/sasr2/)
+* [Book: R for SAS and SPSS Users (Statistics and Computing) - on Amazon](https://www.amazon.com/SAS-SPSS-Users-Statistics-Computing/dp/1461406846) and [FREE Online Version](https://r4stats.com/books/free-version/)
+* [Book: Statistical Inference via Data Science](https://moderndive.com/)
+* [Book: The Epidemiologist R Handbook](https://epirhandbook.com/en/index.html)
+* [Book/Course: Stat 545](https://stat545.com/)
+* [Book: Statistical Inference via Data Science: A ModernDive into R and the Tidyverse](https://moderndive.com/v2/)
+* [Book: R in Action](https://www.manning.com/books/r-in-action-third-edition)
+* [OpenIntro Statistics](https://www.openintro.org/)
+* [Mastering Software Development in R](https://bookdown.org/rdpeng/RProgDA/)
+* [UCLA’s Office of Advanced Research Computing (OARC) - R Software Resources](https://stats.oarc.ucla.edu/r/)
+* [PharmaSUG 2022 - Paper AP-193: "R syntax for SAS programmers"](https://www.lexjansen.com/pharmasug/2022/AP/PharmaSUG-2022-AP-193.pdf)
+
+## Other places to get HELP
+
+* [RStudio/Posit and Contributed Cheatsheets](https://rstudio.github.io/cheatsheets/)
+* [StackOverflow](https://stackoverflow.com/)
+    - I encourage you to create an account so you can post questions. But even without an account you can search for and find answers to your questions and error messages.
+* [Google](https://www.google.com/)
+    - You can often cut and paste error messages in Google to find answers - most likely will redirect you to Stack Overflow. 
+* Package vignettes for packages on CRAN
+    - Here is [one vignette for dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html)
+    - These will often help you get started.
+* Github package issues
+    - Many packages will host their code on Github which includes an "issues" tab. This can be a good place to see what other problems people may be having with a given package.
+    - [dplyr issues on Github](https://github.com/tidyverse/dplyr/issues)
+* CRAN package site
+    - [dplyr on CRAN](https://cran.r-project.org/web/packages/dplyr/index.html) - spend time looking at:
+        - the [README](https://cran.r-project.org/web/packages/dplyr/readme/README.html) for the package or
+        - [bug reports](https://github.com/tidyverse/dplyr/issues) or
+        - [NEWS](https://cran.r-project.org/web/packages/dplyr/news/news.html) which will detail the changes for each version updates
+* [R Bloggers](https://www.r-bloggers.com/)
+    - This is a really good website which curates thousands of people who are R developers, users and programmers who post articles about R.
+* [STHDA Website for "Statistical tools for high-throughput data analysis"](https://www.sthda.com/english/)
+    - This website will often come up when "Googling" for answers. It has a lot of ads but often has very helpful examples.
+* [Quick-R](https://www.statmethods.net/)
+    - This website was originally created by Robert I. Kabacoff, who wrote the [Book: R in Action](https://www.manning.com/books/r-in-action-third-edition).
+    - However, the website has now been taken over by [Datacamp](https://www.datacamp.com/).

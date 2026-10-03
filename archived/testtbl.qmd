@@ -1,0 +1,75 @@
+---
+title: "testtbl"
+format: html
+---
+
+## columns
+
+::::: {layout-ncol="2"}
+::: {}
+## SAS Codes
+
+Content for the first column.
+
+```
+libname rforsas 'C:\R4SASUsers';
+```
+
+:::
+
+::: {}
+## R Codes
+
+Content for the second column.
+
+```r
+getwd()
+```
+
+:::
+:::::
+
+
+
+## list table
+
+:::{.list-table}
+
+- - SAS Code
+  - R
+  
+- - 
+    
+    ```
+    libname rforsas 'C:\R4SASUsers';
+    ```
+
+  - 
+  
+    ```
+    getwd()
+    ```
+:::
+
+
+## another table
+
+::: {.list-table}
+
+- - Function
+  - Description
+- - `sum()`
+  - Add values:
+  
+    ```python
+    sum([1, 2, 3])
+    ```
+    
+- - `len()`
+  - Count items.
+
+:::
+
+
+
+
