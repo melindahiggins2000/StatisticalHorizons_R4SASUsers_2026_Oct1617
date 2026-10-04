@@ -1,5 +1,7 @@
 # Day 1 Morning Code ============================
 
+# bookmark label =============
+
 # ===============================================
 # Section 2. Write simple R code in Console =====
 # ===============================================
@@ -12,7 +14,7 @@
 
 # save output in an object
 ten <- 5 + 5
-ten
+
 
 # built in constants
 pi
@@ -24,7 +26,7 @@ month.name
 
 # get details on type and size
 class(letters)
-length(letters)
+
 
 # get help
 # look in help window
@@ -34,6 +36,8 @@ help(pi, package = "base")
 # if don't know package
 # run wide search
 ??plot
+
+help(plot, package = "base")
 
 # get help on an operator
 help("+")
@@ -99,6 +103,10 @@ plot(x,y)
 # Where did the plot go?
 # Go to the Plots window - explore options
 
+# Save plot directly to a JPG file
+jpeg(filename = "myplot.jpg")
+plot(x,y)
+dev.off()
 
 
 # EXERCISE 02 - TRY THESE ON YOUR OWN ===========
@@ -116,6 +124,7 @@ plot(x, cosx)
 # use functions as needed on the fly!
 # plot x, sin(x)
 plot(x, sin(x))     # assumed order x-axis and 
+
 # then y-axis
 plot(y=sin(x), x=x) # order doesn't matter 
 # with explicit assignment
@@ -136,16 +145,18 @@ plot(x, sin(x), type = "both", col = "red")
 # type = "both" to type = "b"
 plot(x, sin(x), type = "b", col = "red")
 
+plot(x, sin(x), type = "b", col = "#373A78")
+
 # Check ENVIRONMENT TAB
 # How many objects are there now?
 
-
+colors()
 
 # [YOUR TURN] plot x and the tangent of x
 # change color to blue
 # hint: help(sin) - to see list of other trig functions
 # hint: cut and paste code above to help you
-plot(x, tan(x), type = "b", col = "blue")
+plot(x, tan(x), type="b", col="blue")
 
 # [YOUR TURN] plot log of x with log y
 # change color to green

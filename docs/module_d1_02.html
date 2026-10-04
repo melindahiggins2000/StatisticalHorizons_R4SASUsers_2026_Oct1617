@@ -1403,7 +1403,8 @@ div.csl-indent {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Take a moment and compare the output “Value” produced from the <code><a href="https://dplyr.tidyverse.org/reference/pull.html">pull()</a></code> versus <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> functions.</p>
+<p>Take a moment and compare the output “Value” produced from the <code><a href="https://dplyr.tidyverse.org/reference/pull.html">pull()</a></code> versus <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> functions - look at the “help” window for both functions and scroll down to the “Value” section of the “help” page.</p>
+<p>Notice that the output from <code><a href="https://dplyr.tidyverse.org/reference/pull.html">pull()</a></code> is a vector class type and the output from <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> is the same class type as the <code>.data</code> argument.</p>
 <section id="output-from-pull" class="level3"><h3 class="anchored" data-anchor-id="output-from-pull">Output from <code>pull()</code>
 </h3>
 <p><img src="dplyr_pull_value.png" class="img-fluid"></p>
@@ -1892,6 +1893,21 @@ racegrp      0   1
 <span>                      levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
 <span>                      labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"male"</span>, <span class="st">"female"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>Two-way table with labels added - use <code>gender.f</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb135"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># dplyr</span></span>
+<span><span class="va">helpdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">racegrp</span>, <span class="va">gender.f</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span>useNA <span class="op">=</span> <span class="st">"ifany"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          gender.f
+racegrp    male female
+  black     155     56
+  hispanic   40     10
+  other      19      7
+  white     132     34</code></pre>
+</div>
+</div>
 <div style="page-break-after: always;"></div>
 </section><section id="r---a-better-formatted-table-with-gmodels-package" class="level3"><h3 class="anchored" data-anchor-id="r---a-better-formatted-table-with-gmodels-package">R - A Better Formatted Table with <code>gmodels</code> package</h3>
 <p>A function I really like for making table is the <code><a href="https://rdrr.io/pkg/gmodels/man/CrossTable.html">CrossTable()</a></code> function from the <code>gmodels</code> package. You can use this function to make tables that resemble the output you expect from <code>PROC FREQ</code> from SAS.</p>
@@ -1907,7 +1923,7 @@ racegrp      0   1
 </ul>
 <p>Notice that I am using the <code>gender.f</code> factor type variable with better labels.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb135"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># make table with gmodels package</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb137"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># make table with gmodels package</span></span>
 <span><span class="co"># and CrossTable() function</span></span>
 <span><span class="co"># show expected counts</span></span>
 <span><span class="co">#      percents within columns</span></span>
@@ -1995,7 +2011,7 @@ p =  0.4867413
 <li>add the p-values for the statistical test (which defaults to the <code>chisquare.test()</code>)</li>
 </ol>
 <div class="cell" data-tbl-pos="H">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb137"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># using gtsummary package</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb139"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># using gtsummary package</span></span>
 <span><span class="co"># and tbl_cross() function</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ddsjoberg/gtsummary">gtsummary</a></span><span class="op">)</span></span>
 <span><span class="va">helpdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -2009,23 +2025,23 @@ p =  0.4867413
 Table&nbsp;1
 </figcaption><div aria-describedby="tbl-reg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="uwnjnhtofh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#uwnjnhtofh table {
+<div id="imtgjhqrru" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#imtgjhqrru table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#uwnjnhtofh thead, #uwnjnhtofh tbody, #uwnjnhtofh tfoot, #uwnjnhtofh tr, #uwnjnhtofh td, #uwnjnhtofh th {
+#imtgjhqrru thead, #imtgjhqrru tbody, #imtgjhqrru tfoot, #imtgjhqrru tr, #imtgjhqrru td, #imtgjhqrru th {
   border-style: none;
 }
 
-#uwnjnhtofh p {
+#imtgjhqrru p {
   margin: 0;
   padding: 0;
 }
 
-#uwnjnhtofh .gt_table {
+#imtgjhqrru .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2051,12 +2067,12 @@ Table&nbsp;1
   border-left-color: #D3D3D3;
 }
 
-#uwnjnhtofh .gt_caption {
+#imtgjhqrru .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#uwnjnhtofh .gt_title {
+#imtgjhqrru .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2068,7 +2084,7 @@ Table&nbsp;1
   border-bottom-width: 0;
 }
 
-#uwnjnhtofh .gt_subtitle {
+#imtgjhqrru .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2080,7 +2096,7 @@ Table&nbsp;1
   border-top-width: 0;
 }
 
-#uwnjnhtofh .gt_heading {
+#imtgjhqrru .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2092,13 +2108,13 @@ Table&nbsp;1
   border-right-color: #D3D3D3;
 }
 
-#uwnjnhtofh .gt_bottom_border {
+#imtgjhqrru .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#uwnjnhtofh .gt_col_headings {
+#imtgjhqrru .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2113,7 +2129,7 @@ Table&nbsp;1
   border-right-color: #D3D3D3;
 }
 
-#uwnjnhtofh .gt_col_heading {
+#imtgjhqrru .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2133,7 +2149,7 @@ Table&nbsp;1
   overflow-x: hidden;
 }
 
-#uwnjnhtofh .gt_column_spanner_outer {
+#imtgjhqrru .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2145,15 +2161,15 @@ Table&nbsp;1
   padding-right: 4px;
 }
 
-#uwnjnhtofh .gt_column_spanner_outer:first-child {
+#imtgjhqrru .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#uwnjnhtofh .gt_column_spanner_outer:last-child {
+#imtgjhqrru .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#uwnjnhtofh .gt_column_spanner {
+#imtgjhqrru .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2165,11 +2181,11 @@ Table&nbsp;1
   width: 100%;
 }
 
-#uwnjnhtofh .gt_spanner_row {
+#imtgjhqrru .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#uwnjnhtofh .gt_group_heading {
+#imtgjhqrru .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2195,7 +2211,7 @@ Table&nbsp;1
   text-align: left;
 }
 
-#uwnjnhtofh .gt_empty_group_heading {
+#imtgjhqrru .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2210,15 +2226,15 @@ Table&nbsp;1
   vertical-align: middle;
 }
 
-#uwnjnhtofh .gt_from_md > :first-child {
+#imtgjhqrru .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#uwnjnhtofh .gt_from_md > :last-child {
+#imtgjhqrru .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#uwnjnhtofh .gt_row {
+#imtgjhqrru .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2237,7 +2253,7 @@ Table&nbsp;1
   overflow-x: hidden;
 }
 
-#uwnjnhtofh .gt_stub {
+#imtgjhqrru .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2250,7 +2266,7 @@ Table&nbsp;1
   padding-right: 5px;
 }
 
-#uwnjnhtofh .gt_stub_row_group {
+#imtgjhqrru .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2264,15 +2280,15 @@ Table&nbsp;1
   vertical-align: top;
 }
 
-#uwnjnhtofh .gt_row_group_first td {
+#imtgjhqrru .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#uwnjnhtofh .gt_row_group_first th {
+#imtgjhqrru .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#uwnjnhtofh .gt_summary_row {
+#imtgjhqrru .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2282,16 +2298,16 @@ Table&nbsp;1
   padding-right: 5px;
 }
 
-#uwnjnhtofh .gt_first_summary_row {
+#imtgjhqrru .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#uwnjnhtofh .gt_first_summary_row.thick {
+#imtgjhqrru .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#uwnjnhtofh .gt_last_summary_row {
+#imtgjhqrru .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2301,7 +2317,7 @@ Table&nbsp;1
   border-bottom-color: #D3D3D3;
 }
 
-#uwnjnhtofh .gt_grand_summary_row {
+#imtgjhqrru .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2311,7 +2327,7 @@ Table&nbsp;1
   padding-right: 5px;
 }
 
-#uwnjnhtofh .gt_first_grand_summary_row {
+#imtgjhqrru .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2321,7 +2337,7 @@ Table&nbsp;1
   border-top-color: #D3D3D3;
 }
 
-#uwnjnhtofh .gt_last_grand_summary_row_top {
+#imtgjhqrru .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2331,11 +2347,11 @@ Table&nbsp;1
   border-bottom-color: #D3D3D3;
 }
 
-#uwnjnhtofh .gt_striped {
+#imtgjhqrru .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#uwnjnhtofh .gt_table_body {
+#imtgjhqrru .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2344,7 +2360,7 @@ Table&nbsp;1
   border-bottom-color: #D3D3D3;
 }
 
-#uwnjnhtofh .gt_footnotes {
+#imtgjhqrru .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2358,7 +2374,7 @@ Table&nbsp;1
   border-right-color: #D3D3D3;
 }
 
-#uwnjnhtofh .gt_footnote {
+#imtgjhqrru .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2367,7 +2383,7 @@ Table&nbsp;1
   padding-right: 5px;
 }
 
-#uwnjnhtofh .gt_sourcenotes {
+#imtgjhqrru .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2381,7 +2397,7 @@ Table&nbsp;1
   border-right-color: #D3D3D3;
 }
 
-#uwnjnhtofh .gt_sourcenote {
+#imtgjhqrru .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2389,72 +2405,72 @@ Table&nbsp;1
   padding-right: 5px;
 }
 
-#uwnjnhtofh .gt_left {
+#imtgjhqrru .gt_left {
   text-align: left;
 }
 
-#uwnjnhtofh .gt_center {
+#imtgjhqrru .gt_center {
   text-align: center;
 }
 
-#uwnjnhtofh .gt_right {
+#imtgjhqrru .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#uwnjnhtofh .gt_font_normal {
+#imtgjhqrru .gt_font_normal {
   font-weight: normal;
 }
 
-#uwnjnhtofh .gt_font_bold {
+#imtgjhqrru .gt_font_bold {
   font-weight: bold;
 }
 
-#uwnjnhtofh .gt_font_italic {
+#imtgjhqrru .gt_font_italic {
   font-style: italic;
 }
 
-#uwnjnhtofh .gt_super {
+#imtgjhqrru .gt_super {
   font-size: 65%;
 }
 
-#uwnjnhtofh .gt_footnote_marks {
+#imtgjhqrru .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#uwnjnhtofh .gt_asterisk {
+#imtgjhqrru .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#uwnjnhtofh .gt_indent_1 {
+#imtgjhqrru .gt_indent_1 {
   text-indent: 5px;
 }
 
-#uwnjnhtofh .gt_indent_2 {
+#imtgjhqrru .gt_indent_2 {
   text-indent: 10px;
 }
 
-#uwnjnhtofh .gt_indent_3 {
+#imtgjhqrru .gt_indent_3 {
   text-indent: 15px;
 }
 
-#uwnjnhtofh .gt_indent_4 {
+#imtgjhqrru .gt_indent_4 {
   text-indent: 20px;
 }
 
-#uwnjnhtofh .gt_indent_5 {
+#imtgjhqrru .gt_indent_5 {
   text-indent: 25px;
 }
 
-#uwnjnhtofh .katex-display {
+#imtgjhqrru .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#uwnjnhtofh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#imtgjhqrru div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2539,7 +2555,7 @@ Table&nbsp;1
 <div style="page-break-after: always;"></div>
 <p>We could also get the Fisher’s exact test by changing the default setting in the <code><a href="https://www.danieldsjoberg.com/gtsummary/reference/add_p.html">add_p()</a></code> function.</p>
 <div class="cell" data-tbl-pos="H">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb138"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># run fisher's exact test</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb140"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># run fisher's exact test</span></span>
 <span><span class="va">helpdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_cross.html">tbl_cross</a></span><span class="op">(</span>row <span class="op">=</span> <span class="va">racegrp</span>, </span>
 <span>            col <span class="op">=</span> <span class="va">gender.f</span>,</span>
@@ -2551,23 +2567,23 @@ Table&nbsp;1
 Table&nbsp;2
 </figcaption><div aria-describedby="tbl-reg2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="xtisflktbb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#xtisflktbb table {
+<div id="qatqkmsdcv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#qatqkmsdcv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#xtisflktbb thead, #xtisflktbb tbody, #xtisflktbb tfoot, #xtisflktbb tr, #xtisflktbb td, #xtisflktbb th {
+#qatqkmsdcv thead, #qatqkmsdcv tbody, #qatqkmsdcv tfoot, #qatqkmsdcv tr, #qatqkmsdcv td, #qatqkmsdcv th {
   border-style: none;
 }
 
-#xtisflktbb p {
+#qatqkmsdcv p {
   margin: 0;
   padding: 0;
 }
 
-#xtisflktbb .gt_table {
+#qatqkmsdcv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2593,12 +2609,12 @@ Table&nbsp;2
   border-left-color: #D3D3D3;
 }
 
-#xtisflktbb .gt_caption {
+#qatqkmsdcv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#xtisflktbb .gt_title {
+#qatqkmsdcv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2610,7 +2626,7 @@ Table&nbsp;2
   border-bottom-width: 0;
 }
 
-#xtisflktbb .gt_subtitle {
+#qatqkmsdcv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2622,7 +2638,7 @@ Table&nbsp;2
   border-top-width: 0;
 }
 
-#xtisflktbb .gt_heading {
+#qatqkmsdcv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2634,13 +2650,13 @@ Table&nbsp;2
   border-right-color: #D3D3D3;
 }
 
-#xtisflktbb .gt_bottom_border {
+#qatqkmsdcv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xtisflktbb .gt_col_headings {
+#qatqkmsdcv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2655,7 +2671,7 @@ Table&nbsp;2
   border-right-color: #D3D3D3;
 }
 
-#xtisflktbb .gt_col_heading {
+#qatqkmsdcv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2675,7 +2691,7 @@ Table&nbsp;2
   overflow-x: hidden;
 }
 
-#xtisflktbb .gt_column_spanner_outer {
+#qatqkmsdcv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2687,15 +2703,15 @@ Table&nbsp;2
   padding-right: 4px;
 }
 
-#xtisflktbb .gt_column_spanner_outer:first-child {
+#qatqkmsdcv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xtisflktbb .gt_column_spanner_outer:last-child {
+#qatqkmsdcv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xtisflktbb .gt_column_spanner {
+#qatqkmsdcv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2707,11 +2723,11 @@ Table&nbsp;2
   width: 100%;
 }
 
-#xtisflktbb .gt_spanner_row {
+#qatqkmsdcv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#xtisflktbb .gt_group_heading {
+#qatqkmsdcv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2737,7 +2753,7 @@ Table&nbsp;2
   text-align: left;
 }
 
-#xtisflktbb .gt_empty_group_heading {
+#qatqkmsdcv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2752,15 +2768,15 @@ Table&nbsp;2
   vertical-align: middle;
 }
 
-#xtisflktbb .gt_from_md > :first-child {
+#qatqkmsdcv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xtisflktbb .gt_from_md > :last-child {
+#qatqkmsdcv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xtisflktbb .gt_row {
+#qatqkmsdcv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2779,7 +2795,7 @@ Table&nbsp;2
   overflow-x: hidden;
 }
 
-#xtisflktbb .gt_stub {
+#qatqkmsdcv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2792,7 +2808,7 @@ Table&nbsp;2
   padding-right: 5px;
 }
 
-#xtisflktbb .gt_stub_row_group {
+#qatqkmsdcv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2806,15 +2822,15 @@ Table&nbsp;2
   vertical-align: top;
 }
 
-#xtisflktbb .gt_row_group_first td {
+#qatqkmsdcv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xtisflktbb .gt_row_group_first th {
+#qatqkmsdcv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#xtisflktbb .gt_summary_row {
+#qatqkmsdcv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2824,16 +2840,16 @@ Table&nbsp;2
   padding-right: 5px;
 }
 
-#xtisflktbb .gt_first_summary_row {
+#qatqkmsdcv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xtisflktbb .gt_first_summary_row.thick {
+#qatqkmsdcv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xtisflktbb .gt_last_summary_row {
+#qatqkmsdcv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2843,7 +2859,7 @@ Table&nbsp;2
   border-bottom-color: #D3D3D3;
 }
 
-#xtisflktbb .gt_grand_summary_row {
+#qatqkmsdcv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2853,7 +2869,7 @@ Table&nbsp;2
   padding-right: 5px;
 }
 
-#xtisflktbb .gt_first_grand_summary_row {
+#qatqkmsdcv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2863,7 +2879,7 @@ Table&nbsp;2
   border-top-color: #D3D3D3;
 }
 
-#xtisflktbb .gt_last_grand_summary_row_top {
+#qatqkmsdcv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2873,11 +2889,11 @@ Table&nbsp;2
   border-bottom-color: #D3D3D3;
 }
 
-#xtisflktbb .gt_striped {
+#qatqkmsdcv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xtisflktbb .gt_table_body {
+#qatqkmsdcv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2886,7 +2902,7 @@ Table&nbsp;2
   border-bottom-color: #D3D3D3;
 }
 
-#xtisflktbb .gt_footnotes {
+#qatqkmsdcv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2900,7 +2916,7 @@ Table&nbsp;2
   border-right-color: #D3D3D3;
 }
 
-#xtisflktbb .gt_footnote {
+#qatqkmsdcv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2909,7 +2925,7 @@ Table&nbsp;2
   padding-right: 5px;
 }
 
-#xtisflktbb .gt_sourcenotes {
+#qatqkmsdcv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2923,7 +2939,7 @@ Table&nbsp;2
   border-right-color: #D3D3D3;
 }
 
-#xtisflktbb .gt_sourcenote {
+#qatqkmsdcv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2931,72 +2947,72 @@ Table&nbsp;2
   padding-right: 5px;
 }
 
-#xtisflktbb .gt_left {
+#qatqkmsdcv .gt_left {
   text-align: left;
 }
 
-#xtisflktbb .gt_center {
+#qatqkmsdcv .gt_center {
   text-align: center;
 }
 
-#xtisflktbb .gt_right {
+#qatqkmsdcv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xtisflktbb .gt_font_normal {
+#qatqkmsdcv .gt_font_normal {
   font-weight: normal;
 }
 
-#xtisflktbb .gt_font_bold {
+#qatqkmsdcv .gt_font_bold {
   font-weight: bold;
 }
 
-#xtisflktbb .gt_font_italic {
+#qatqkmsdcv .gt_font_italic {
   font-style: italic;
 }
 
-#xtisflktbb .gt_super {
+#qatqkmsdcv .gt_super {
   font-size: 65%;
 }
 
-#xtisflktbb .gt_footnote_marks {
+#qatqkmsdcv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#xtisflktbb .gt_asterisk {
+#qatqkmsdcv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xtisflktbb .gt_indent_1 {
+#qatqkmsdcv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#xtisflktbb .gt_indent_2 {
+#qatqkmsdcv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#xtisflktbb .gt_indent_3 {
+#qatqkmsdcv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#xtisflktbb .gt_indent_4 {
+#qatqkmsdcv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#xtisflktbb .gt_indent_5 {
+#qatqkmsdcv .gt_indent_5 {
   text-indent: 25px;
 }
 
-#xtisflktbb .katex-display {
+#qatqkmsdcv .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#xtisflktbb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#qatqkmsdcv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -3081,7 +3097,7 @@ Table&nbsp;2
 <div style="page-break-after: always;"></div>
 <p>And here are a few more customization’s that can be helpful. Changing the decimal precision.</p>
 <div class="cell" data-tbl-pos="H">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb139"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># show p-value to 3 digits</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb141"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># show p-value to 3 digits</span></span>
 <span><span class="co"># show counts to 0 decimals</span></span>
 <span><span class="co"># show columns percent to 2 decimal digits</span></span>
 <span><span class="va">helpdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -3097,23 +3113,23 @@ Table&nbsp;2
 Table&nbsp;3
 </figcaption><div aria-describedby="tbl-reg3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="vjtoyzgzdu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vjtoyzgzdu table {
+<div id="owkhxfyfrm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#owkhxfyfrm table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vjtoyzgzdu thead, #vjtoyzgzdu tbody, #vjtoyzgzdu tfoot, #vjtoyzgzdu tr, #vjtoyzgzdu td, #vjtoyzgzdu th {
+#owkhxfyfrm thead, #owkhxfyfrm tbody, #owkhxfyfrm tfoot, #owkhxfyfrm tr, #owkhxfyfrm td, #owkhxfyfrm th {
   border-style: none;
 }
 
-#vjtoyzgzdu p {
+#owkhxfyfrm p {
   margin: 0;
   padding: 0;
 }
 
-#vjtoyzgzdu .gt_table {
+#owkhxfyfrm .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3139,12 +3155,12 @@ Table&nbsp;3
   border-left-color: #D3D3D3;
 }
 
-#vjtoyzgzdu .gt_caption {
+#owkhxfyfrm .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vjtoyzgzdu .gt_title {
+#owkhxfyfrm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3156,7 +3172,7 @@ Table&nbsp;3
   border-bottom-width: 0;
 }
 
-#vjtoyzgzdu .gt_subtitle {
+#owkhxfyfrm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3168,7 +3184,7 @@ Table&nbsp;3
   border-top-width: 0;
 }
 
-#vjtoyzgzdu .gt_heading {
+#owkhxfyfrm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3180,13 +3196,13 @@ Table&nbsp;3
   border-right-color: #D3D3D3;
 }
 
-#vjtoyzgzdu .gt_bottom_border {
+#owkhxfyfrm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vjtoyzgzdu .gt_col_headings {
+#owkhxfyfrm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3201,7 +3217,7 @@ Table&nbsp;3
   border-right-color: #D3D3D3;
 }
 
-#vjtoyzgzdu .gt_col_heading {
+#owkhxfyfrm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3221,7 +3237,7 @@ Table&nbsp;3
   overflow-x: hidden;
 }
 
-#vjtoyzgzdu .gt_column_spanner_outer {
+#owkhxfyfrm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3233,15 +3249,15 @@ Table&nbsp;3
   padding-right: 4px;
 }
 
-#vjtoyzgzdu .gt_column_spanner_outer:first-child {
+#owkhxfyfrm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vjtoyzgzdu .gt_column_spanner_outer:last-child {
+#owkhxfyfrm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vjtoyzgzdu .gt_column_spanner {
+#owkhxfyfrm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3253,11 +3269,11 @@ Table&nbsp;3
   width: 100%;
 }
 
-#vjtoyzgzdu .gt_spanner_row {
+#owkhxfyfrm .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vjtoyzgzdu .gt_group_heading {
+#owkhxfyfrm .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3283,7 +3299,7 @@ Table&nbsp;3
   text-align: left;
 }
 
-#vjtoyzgzdu .gt_empty_group_heading {
+#owkhxfyfrm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3298,15 +3314,15 @@ Table&nbsp;3
   vertical-align: middle;
 }
 
-#vjtoyzgzdu .gt_from_md > :first-child {
+#owkhxfyfrm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vjtoyzgzdu .gt_from_md > :last-child {
+#owkhxfyfrm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vjtoyzgzdu .gt_row {
+#owkhxfyfrm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3325,7 +3341,7 @@ Table&nbsp;3
   overflow-x: hidden;
 }
 
-#vjtoyzgzdu .gt_stub {
+#owkhxfyfrm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3338,7 +3354,7 @@ Table&nbsp;3
   padding-right: 5px;
 }
 
-#vjtoyzgzdu .gt_stub_row_group {
+#owkhxfyfrm .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3352,15 +3368,15 @@ Table&nbsp;3
   vertical-align: top;
 }
 
-#vjtoyzgzdu .gt_row_group_first td {
+#owkhxfyfrm .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vjtoyzgzdu .gt_row_group_first th {
+#owkhxfyfrm .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vjtoyzgzdu .gt_summary_row {
+#owkhxfyfrm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3370,16 +3386,16 @@ Table&nbsp;3
   padding-right: 5px;
 }
 
-#vjtoyzgzdu .gt_first_summary_row {
+#owkhxfyfrm .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vjtoyzgzdu .gt_first_summary_row.thick {
+#owkhxfyfrm .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vjtoyzgzdu .gt_last_summary_row {
+#owkhxfyfrm .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3389,7 +3405,7 @@ Table&nbsp;3
   border-bottom-color: #D3D3D3;
 }
 
-#vjtoyzgzdu .gt_grand_summary_row {
+#owkhxfyfrm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3399,7 +3415,7 @@ Table&nbsp;3
   padding-right: 5px;
 }
 
-#vjtoyzgzdu .gt_first_grand_summary_row {
+#owkhxfyfrm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3409,7 +3425,7 @@ Table&nbsp;3
   border-top-color: #D3D3D3;
 }
 
-#vjtoyzgzdu .gt_last_grand_summary_row_top {
+#owkhxfyfrm .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3419,11 +3435,11 @@ Table&nbsp;3
   border-bottom-color: #D3D3D3;
 }
 
-#vjtoyzgzdu .gt_striped {
+#owkhxfyfrm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vjtoyzgzdu .gt_table_body {
+#owkhxfyfrm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3432,7 +3448,7 @@ Table&nbsp;3
   border-bottom-color: #D3D3D3;
 }
 
-#vjtoyzgzdu .gt_footnotes {
+#owkhxfyfrm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3446,7 +3462,7 @@ Table&nbsp;3
   border-right-color: #D3D3D3;
 }
 
-#vjtoyzgzdu .gt_footnote {
+#owkhxfyfrm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3455,7 +3471,7 @@ Table&nbsp;3
   padding-right: 5px;
 }
 
-#vjtoyzgzdu .gt_sourcenotes {
+#owkhxfyfrm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3469,7 +3485,7 @@ Table&nbsp;3
   border-right-color: #D3D3D3;
 }
 
-#vjtoyzgzdu .gt_sourcenote {
+#owkhxfyfrm .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3477,72 +3493,72 @@ Table&nbsp;3
   padding-right: 5px;
 }
 
-#vjtoyzgzdu .gt_left {
+#owkhxfyfrm .gt_left {
   text-align: left;
 }
 
-#vjtoyzgzdu .gt_center {
+#owkhxfyfrm .gt_center {
   text-align: center;
 }
 
-#vjtoyzgzdu .gt_right {
+#owkhxfyfrm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vjtoyzgzdu .gt_font_normal {
+#owkhxfyfrm .gt_font_normal {
   font-weight: normal;
 }
 
-#vjtoyzgzdu .gt_font_bold {
+#owkhxfyfrm .gt_font_bold {
   font-weight: bold;
 }
 
-#vjtoyzgzdu .gt_font_italic {
+#owkhxfyfrm .gt_font_italic {
   font-style: italic;
 }
 
-#vjtoyzgzdu .gt_super {
+#owkhxfyfrm .gt_super {
   font-size: 65%;
 }
 
-#vjtoyzgzdu .gt_footnote_marks {
+#owkhxfyfrm .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vjtoyzgzdu .gt_asterisk {
+#owkhxfyfrm .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vjtoyzgzdu .gt_indent_1 {
+#owkhxfyfrm .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vjtoyzgzdu .gt_indent_2 {
+#owkhxfyfrm .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vjtoyzgzdu .gt_indent_3 {
+#owkhxfyfrm .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vjtoyzgzdu .gt_indent_4 {
+#owkhxfyfrm .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vjtoyzgzdu .gt_indent_5 {
+#owkhxfyfrm .gt_indent_5 {
   text-indent: 25px;
 }
 
-#vjtoyzgzdu .katex-display {
+#owkhxfyfrm .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#vjtoyzgzdu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#owkhxfyfrm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -3627,7 +3643,7 @@ Table&nbsp;3
 <div style="page-break-after: always;"></div>
 <p>Adding better labels and a title for the table.</p>
 <div class="cell" data-tbl-pos="H">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb140"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># add better labels</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb142"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># add better labels</span></span>
 <span><span class="co"># add caption title</span></span>
 <span><span class="va">helpdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_cross.html">tbl_cross</a></span><span class="op">(</span>row <span class="op">=</span> <span class="va">racegrp</span>, </span>
@@ -3647,23 +3663,23 @@ Table&nbsp;3
 Table&nbsp;4: Table Race by Gender
 </figcaption><div aria-describedby="tbl-reg4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="lwjyfqiczy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lwjyfqiczy table {
+<div id="zecyhomvpc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zecyhomvpc table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#lwjyfqiczy thead, #lwjyfqiczy tbody, #lwjyfqiczy tfoot, #lwjyfqiczy tr, #lwjyfqiczy td, #lwjyfqiczy th {
+#zecyhomvpc thead, #zecyhomvpc tbody, #zecyhomvpc tfoot, #zecyhomvpc tr, #zecyhomvpc td, #zecyhomvpc th {
   border-style: none;
 }
 
-#lwjyfqiczy p {
+#zecyhomvpc p {
   margin: 0;
   padding: 0;
 }
 
-#lwjyfqiczy .gt_table {
+#zecyhomvpc .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3689,12 +3705,12 @@ Table&nbsp;4: Table Race by Gender
   border-left-color: #D3D3D3;
 }
 
-#lwjyfqiczy .gt_caption {
+#zecyhomvpc .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#lwjyfqiczy .gt_title {
+#zecyhomvpc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3706,7 +3722,7 @@ Table&nbsp;4: Table Race by Gender
   border-bottom-width: 0;
 }
 
-#lwjyfqiczy .gt_subtitle {
+#zecyhomvpc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3718,7 +3734,7 @@ Table&nbsp;4: Table Race by Gender
   border-top-width: 0;
 }
 
-#lwjyfqiczy .gt_heading {
+#zecyhomvpc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3730,13 +3746,13 @@ Table&nbsp;4: Table Race by Gender
   border-right-color: #D3D3D3;
 }
 
-#lwjyfqiczy .gt_bottom_border {
+#zecyhomvpc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lwjyfqiczy .gt_col_headings {
+#zecyhomvpc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3751,7 +3767,7 @@ Table&nbsp;4: Table Race by Gender
   border-right-color: #D3D3D3;
 }
 
-#lwjyfqiczy .gt_col_heading {
+#zecyhomvpc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3771,7 +3787,7 @@ Table&nbsp;4: Table Race by Gender
   overflow-x: hidden;
 }
 
-#lwjyfqiczy .gt_column_spanner_outer {
+#zecyhomvpc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3783,15 +3799,15 @@ Table&nbsp;4: Table Race by Gender
   padding-right: 4px;
 }
 
-#lwjyfqiczy .gt_column_spanner_outer:first-child {
+#zecyhomvpc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lwjyfqiczy .gt_column_spanner_outer:last-child {
+#zecyhomvpc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lwjyfqiczy .gt_column_spanner {
+#zecyhomvpc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3803,11 +3819,11 @@ Table&nbsp;4: Table Race by Gender
   width: 100%;
 }
 
-#lwjyfqiczy .gt_spanner_row {
+#zecyhomvpc .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#lwjyfqiczy .gt_group_heading {
+#zecyhomvpc .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3833,7 +3849,7 @@ Table&nbsp;4: Table Race by Gender
   text-align: left;
 }
 
-#lwjyfqiczy .gt_empty_group_heading {
+#zecyhomvpc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3848,15 +3864,15 @@ Table&nbsp;4: Table Race by Gender
   vertical-align: middle;
 }
 
-#lwjyfqiczy .gt_from_md > :first-child {
+#zecyhomvpc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lwjyfqiczy .gt_from_md > :last-child {
+#zecyhomvpc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lwjyfqiczy .gt_row {
+#zecyhomvpc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3875,7 +3891,7 @@ Table&nbsp;4: Table Race by Gender
   overflow-x: hidden;
 }
 
-#lwjyfqiczy .gt_stub {
+#zecyhomvpc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3888,7 +3904,7 @@ Table&nbsp;4: Table Race by Gender
   padding-right: 5px;
 }
 
-#lwjyfqiczy .gt_stub_row_group {
+#zecyhomvpc .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3902,15 +3918,15 @@ Table&nbsp;4: Table Race by Gender
   vertical-align: top;
 }
 
-#lwjyfqiczy .gt_row_group_first td {
+#zecyhomvpc .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lwjyfqiczy .gt_row_group_first th {
+#zecyhomvpc .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#lwjyfqiczy .gt_summary_row {
+#zecyhomvpc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3920,16 +3936,16 @@ Table&nbsp;4: Table Race by Gender
   padding-right: 5px;
 }
 
-#lwjyfqiczy .gt_first_summary_row {
+#zecyhomvpc .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lwjyfqiczy .gt_first_summary_row.thick {
+#zecyhomvpc .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lwjyfqiczy .gt_last_summary_row {
+#zecyhomvpc .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3939,7 +3955,7 @@ Table&nbsp;4: Table Race by Gender
   border-bottom-color: #D3D3D3;
 }
 
-#lwjyfqiczy .gt_grand_summary_row {
+#zecyhomvpc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3949,7 +3965,7 @@ Table&nbsp;4: Table Race by Gender
   padding-right: 5px;
 }
 
-#lwjyfqiczy .gt_first_grand_summary_row {
+#zecyhomvpc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3959,7 +3975,7 @@ Table&nbsp;4: Table Race by Gender
   border-top-color: #D3D3D3;
 }
 
-#lwjyfqiczy .gt_last_grand_summary_row_top {
+#zecyhomvpc .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3969,11 +3985,11 @@ Table&nbsp;4: Table Race by Gender
   border-bottom-color: #D3D3D3;
 }
 
-#lwjyfqiczy .gt_striped {
+#zecyhomvpc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lwjyfqiczy .gt_table_body {
+#zecyhomvpc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3982,7 +3998,7 @@ Table&nbsp;4: Table Race by Gender
   border-bottom-color: #D3D3D3;
 }
 
-#lwjyfqiczy .gt_footnotes {
+#zecyhomvpc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3996,7 +4012,7 @@ Table&nbsp;4: Table Race by Gender
   border-right-color: #D3D3D3;
 }
 
-#lwjyfqiczy .gt_footnote {
+#zecyhomvpc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -4005,7 +4021,7 @@ Table&nbsp;4: Table Race by Gender
   padding-right: 5px;
 }
 
-#lwjyfqiczy .gt_sourcenotes {
+#zecyhomvpc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4019,7 +4035,7 @@ Table&nbsp;4: Table Race by Gender
   border-right-color: #D3D3D3;
 }
 
-#lwjyfqiczy .gt_sourcenote {
+#zecyhomvpc .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4027,72 +4043,72 @@ Table&nbsp;4: Table Race by Gender
   padding-right: 5px;
 }
 
-#lwjyfqiczy .gt_left {
+#zecyhomvpc .gt_left {
   text-align: left;
 }
 
-#lwjyfqiczy .gt_center {
+#zecyhomvpc .gt_center {
   text-align: center;
 }
 
-#lwjyfqiczy .gt_right {
+#zecyhomvpc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lwjyfqiczy .gt_font_normal {
+#zecyhomvpc .gt_font_normal {
   font-weight: normal;
 }
 
-#lwjyfqiczy .gt_font_bold {
+#zecyhomvpc .gt_font_bold {
   font-weight: bold;
 }
 
-#lwjyfqiczy .gt_font_italic {
+#zecyhomvpc .gt_font_italic {
   font-style: italic;
 }
 
-#lwjyfqiczy .gt_super {
+#zecyhomvpc .gt_super {
   font-size: 65%;
 }
 
-#lwjyfqiczy .gt_footnote_marks {
+#zecyhomvpc .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#lwjyfqiczy .gt_asterisk {
+#zecyhomvpc .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lwjyfqiczy .gt_indent_1 {
+#zecyhomvpc .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lwjyfqiczy .gt_indent_2 {
+#zecyhomvpc .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lwjyfqiczy .gt_indent_3 {
+#zecyhomvpc .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lwjyfqiczy .gt_indent_4 {
+#zecyhomvpc .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lwjyfqiczy .gt_indent_5 {
+#zecyhomvpc .gt_indent_5 {
   text-indent: 25px;
 }
 
-#lwjyfqiczy .katex-display {
+#zecyhomvpc .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#lwjyfqiczy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#zecyhomvpc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -4178,7 +4194,7 @@ Table&nbsp;4: Table Race by Gender
 <div style="page-break-after: always;"></div>
 <p>Back to default chi-square test results:</p>
 <div class="cell" data-tbl-pos="H">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb141"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># and with chi-square test results</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb143"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># and with chi-square test results</span></span>
 <span><span class="va">helpdata</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_cross.html">tbl_cross</a></span><span class="op">(</span>row <span class="op">=</span> <span class="va">racegrp</span>, </span>
 <span>            col <span class="op">=</span> <span class="va">gender.f</span>,</span>
@@ -4196,23 +4212,23 @@ Table&nbsp;4: Table Race by Gender
 Table&nbsp;5: Table Race by Gender
 </figcaption><div aria-describedby="tbl-reg5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="pzqcajnwoh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#pzqcajnwoh table {
+<div id="cnxhzvaveh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#cnxhzvaveh table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#pzqcajnwoh thead, #pzqcajnwoh tbody, #pzqcajnwoh tfoot, #pzqcajnwoh tr, #pzqcajnwoh td, #pzqcajnwoh th {
+#cnxhzvaveh thead, #cnxhzvaveh tbody, #cnxhzvaveh tfoot, #cnxhzvaveh tr, #cnxhzvaveh td, #cnxhzvaveh th {
   border-style: none;
 }
 
-#pzqcajnwoh p {
+#cnxhzvaveh p {
   margin: 0;
   padding: 0;
 }
 
-#pzqcajnwoh .gt_table {
+#cnxhzvaveh .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -4238,12 +4254,12 @@ Table&nbsp;5: Table Race by Gender
   border-left-color: #D3D3D3;
 }
 
-#pzqcajnwoh .gt_caption {
+#cnxhzvaveh .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#pzqcajnwoh .gt_title {
+#cnxhzvaveh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -4255,7 +4271,7 @@ Table&nbsp;5: Table Race by Gender
   border-bottom-width: 0;
 }
 
-#pzqcajnwoh .gt_subtitle {
+#cnxhzvaveh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -4267,7 +4283,7 @@ Table&nbsp;5: Table Race by Gender
   border-top-width: 0;
 }
 
-#pzqcajnwoh .gt_heading {
+#cnxhzvaveh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -4279,13 +4295,13 @@ Table&nbsp;5: Table Race by Gender
   border-right-color: #D3D3D3;
 }
 
-#pzqcajnwoh .gt_bottom_border {
+#cnxhzvaveh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pzqcajnwoh .gt_col_headings {
+#cnxhzvaveh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4300,7 +4316,7 @@ Table&nbsp;5: Table Race by Gender
   border-right-color: #D3D3D3;
 }
 
-#pzqcajnwoh .gt_col_heading {
+#cnxhzvaveh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4320,7 +4336,7 @@ Table&nbsp;5: Table Race by Gender
   overflow-x: hidden;
 }
 
-#pzqcajnwoh .gt_column_spanner_outer {
+#cnxhzvaveh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4332,15 +4348,15 @@ Table&nbsp;5: Table Race by Gender
   padding-right: 4px;
 }
 
-#pzqcajnwoh .gt_column_spanner_outer:first-child {
+#cnxhzvaveh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pzqcajnwoh .gt_column_spanner_outer:last-child {
+#cnxhzvaveh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pzqcajnwoh .gt_column_spanner {
+#cnxhzvaveh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -4352,11 +4368,11 @@ Table&nbsp;5: Table Race by Gender
   width: 100%;
 }
 
-#pzqcajnwoh .gt_spanner_row {
+#cnxhzvaveh .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#pzqcajnwoh .gt_group_heading {
+#cnxhzvaveh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4382,7 +4398,7 @@ Table&nbsp;5: Table Race by Gender
   text-align: left;
 }
 
-#pzqcajnwoh .gt_empty_group_heading {
+#cnxhzvaveh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -4397,15 +4413,15 @@ Table&nbsp;5: Table Race by Gender
   vertical-align: middle;
 }
 
-#pzqcajnwoh .gt_from_md > :first-child {
+#cnxhzvaveh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pzqcajnwoh .gt_from_md > :last-child {
+#cnxhzvaveh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pzqcajnwoh .gt_row {
+#cnxhzvaveh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4424,7 +4440,7 @@ Table&nbsp;5: Table Race by Gender
   overflow-x: hidden;
 }
 
-#pzqcajnwoh .gt_stub {
+#cnxhzvaveh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4437,7 +4453,7 @@ Table&nbsp;5: Table Race by Gender
   padding-right: 5px;
 }
 
-#pzqcajnwoh .gt_stub_row_group {
+#cnxhzvaveh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4451,15 +4467,15 @@ Table&nbsp;5: Table Race by Gender
   vertical-align: top;
 }
 
-#pzqcajnwoh .gt_row_group_first td {
+#cnxhzvaveh .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pzqcajnwoh .gt_row_group_first th {
+#cnxhzvaveh .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#pzqcajnwoh .gt_summary_row {
+#cnxhzvaveh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4469,16 +4485,16 @@ Table&nbsp;5: Table Race by Gender
   padding-right: 5px;
 }
 
-#pzqcajnwoh .gt_first_summary_row {
+#cnxhzvaveh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#pzqcajnwoh .gt_first_summary_row.thick {
+#cnxhzvaveh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pzqcajnwoh .gt_last_summary_row {
+#cnxhzvaveh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4488,7 +4504,7 @@ Table&nbsp;5: Table Race by Gender
   border-bottom-color: #D3D3D3;
 }
 
-#pzqcajnwoh .gt_grand_summary_row {
+#cnxhzvaveh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4498,7 +4514,7 @@ Table&nbsp;5: Table Race by Gender
   padding-right: 5px;
 }
 
-#pzqcajnwoh .gt_first_grand_summary_row {
+#cnxhzvaveh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4508,7 +4524,7 @@ Table&nbsp;5: Table Race by Gender
   border-top-color: #D3D3D3;
 }
 
-#pzqcajnwoh .gt_last_grand_summary_row_top {
+#cnxhzvaveh .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4518,11 +4534,11 @@ Table&nbsp;5: Table Race by Gender
   border-bottom-color: #D3D3D3;
 }
 
-#pzqcajnwoh .gt_striped {
+#cnxhzvaveh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pzqcajnwoh .gt_table_body {
+#cnxhzvaveh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4531,7 +4547,7 @@ Table&nbsp;5: Table Race by Gender
   border-bottom-color: #D3D3D3;
 }
 
-#pzqcajnwoh .gt_footnotes {
+#cnxhzvaveh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4545,7 +4561,7 @@ Table&nbsp;5: Table Race by Gender
   border-right-color: #D3D3D3;
 }
 
-#pzqcajnwoh .gt_footnote {
+#cnxhzvaveh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -4554,7 +4570,7 @@ Table&nbsp;5: Table Race by Gender
   padding-right: 5px;
 }
 
-#pzqcajnwoh .gt_sourcenotes {
+#cnxhzvaveh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4568,7 +4584,7 @@ Table&nbsp;5: Table Race by Gender
   border-right-color: #D3D3D3;
 }
 
-#pzqcajnwoh .gt_sourcenote {
+#cnxhzvaveh .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4576,72 +4592,72 @@ Table&nbsp;5: Table Race by Gender
   padding-right: 5px;
 }
 
-#pzqcajnwoh .gt_left {
+#cnxhzvaveh .gt_left {
   text-align: left;
 }
 
-#pzqcajnwoh .gt_center {
+#cnxhzvaveh .gt_center {
   text-align: center;
 }
 
-#pzqcajnwoh .gt_right {
+#cnxhzvaveh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pzqcajnwoh .gt_font_normal {
+#cnxhzvaveh .gt_font_normal {
   font-weight: normal;
 }
 
-#pzqcajnwoh .gt_font_bold {
+#cnxhzvaveh .gt_font_bold {
   font-weight: bold;
 }
 
-#pzqcajnwoh .gt_font_italic {
+#cnxhzvaveh .gt_font_italic {
   font-style: italic;
 }
 
-#pzqcajnwoh .gt_super {
+#cnxhzvaveh .gt_super {
   font-size: 65%;
 }
 
-#pzqcajnwoh .gt_footnote_marks {
+#cnxhzvaveh .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#pzqcajnwoh .gt_asterisk {
+#cnxhzvaveh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pzqcajnwoh .gt_indent_1 {
+#cnxhzvaveh .gt_indent_1 {
   text-indent: 5px;
 }
 
-#pzqcajnwoh .gt_indent_2 {
+#cnxhzvaveh .gt_indent_2 {
   text-indent: 10px;
 }
 
-#pzqcajnwoh .gt_indent_3 {
+#cnxhzvaveh .gt_indent_3 {
   text-indent: 15px;
 }
 
-#pzqcajnwoh .gt_indent_4 {
+#cnxhzvaveh .gt_indent_4 {
   text-indent: 20px;
 }
 
-#pzqcajnwoh .gt_indent_5 {
+#cnxhzvaveh .gt_indent_5 {
   text-indent: 25px;
 }
 
-#pzqcajnwoh .katex-display {
+#cnxhzvaveh .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#pzqcajnwoh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#cnxhzvaveh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -4727,21 +4743,21 @@ Table&nbsp;5: Table Race by Gender
 <div style="page-break-after: always;"></div>
 </section><section id="sas---table-summaries-of-categorical-variables-and-associated-tests" class="level3"><h3 class="anchored" data-anchor-id="sas---table-summaries-of-categorical-variables-and-associated-tests">SAS - Table summaries of categorical variables and associated tests</h3>
 <p>For getting summary tables for categorical data, <code>PROC FREQ</code> works well in SAS and also is used for performing chi-square and Fisher’s exact tests.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb142"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a>* get frequency tables;</span>
-<span id="cb142-2"><a href="#cb142-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb142-3"><a href="#cb142-3" aria-hidden="true" tabindex="-1"></a>proc freq data=helpfmt;</span>
-<span id="cb142-4"><a href="#cb142-4" aria-hidden="true" tabindex="-1"></a>  tables female racegrp;</span>
-<span id="cb142-5"><a href="#cb142-5" aria-hidden="true" tabindex="-1"></a>  run;</span>
-<span id="cb142-6"><a href="#cb142-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb142-7"><a href="#cb142-7" aria-hidden="true" tabindex="-1"></a>* get race by gender</span>
-<span id="cb142-8"><a href="#cb142-8" aria-hidden="true" tabindex="-1"></a>  chi-square test </span>
-<span id="cb142-9"><a href="#cb142-9" aria-hidden="true" tabindex="-1"></a>  and fisher's exact tests</span>
-<span id="cb142-10"><a href="#cb142-10" aria-hidden="true" tabindex="-1"></a>  show column percents, counts, </span>
-<span id="cb142-11"><a href="#cb142-11" aria-hidden="true" tabindex="-1"></a>  and expected counts;</span>
-<span id="cb142-12"><a href="#cb142-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb142-13"><a href="#cb142-13" aria-hidden="true" tabindex="-1"></a>proc freq data=helpfmt;</span>
-<span id="cb142-14"><a href="#cb142-14" aria-hidden="true" tabindex="-1"></a>  table racegrp*female / chisq fisher expected norow nopercent;</span>
-<span id="cb142-15"><a href="#cb142-15" aria-hidden="true" tabindex="-1"></a>  run;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb144"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a>* get frequency tables;</span>
+<span id="cb144-2"><a href="#cb144-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-3"><a href="#cb144-3" aria-hidden="true" tabindex="-1"></a>proc freq data=helpfmt;</span>
+<span id="cb144-4"><a href="#cb144-4" aria-hidden="true" tabindex="-1"></a>  tables female racegrp;</span>
+<span id="cb144-5"><a href="#cb144-5" aria-hidden="true" tabindex="-1"></a>  run;</span>
+<span id="cb144-6"><a href="#cb144-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-7"><a href="#cb144-7" aria-hidden="true" tabindex="-1"></a>* get race by gender</span>
+<span id="cb144-8"><a href="#cb144-8" aria-hidden="true" tabindex="-1"></a>  chi-square test </span>
+<span id="cb144-9"><a href="#cb144-9" aria-hidden="true" tabindex="-1"></a>  and fisher's exact tests</span>
+<span id="cb144-10"><a href="#cb144-10" aria-hidden="true" tabindex="-1"></a>  show column percents, counts, </span>
+<span id="cb144-11"><a href="#cb144-11" aria-hidden="true" tabindex="-1"></a>  and expected counts;</span>
+<span id="cb144-12"><a href="#cb144-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-13"><a href="#cb144-13" aria-hidden="true" tabindex="-1"></a>proc freq data=helpfmt;</span>
+<span id="cb144-14"><a href="#cb144-14" aria-hidden="true" tabindex="-1"></a>  table racegrp*female / chisq fisher expected norow nopercent;</span>
+<span id="cb144-15"><a href="#cb144-15" aria-hidden="true" tabindex="-1"></a>  run;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 <div style="page-break-after: always;"></div>
 </section></section><section id="getting-started-with-visualization" class="level2"><h2 class="anchored" data-anchor-id="getting-started-with-visualization">4. Getting started with visualization</h2>
@@ -4767,13 +4783,13 @@ Table&nbsp;5: Table Race by Gender
 </li>
 </ol>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb143"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb145"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># initialize ggplot() for the dataset</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">helpdata</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="module_d1_02_files/figure-html/unnamed-chunk-53-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure"><p><img src="module_d1_02_files/figure-html/unnamed-chunk-54-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
@@ -4787,12 +4803,12 @@ Table&nbsp;5: Table Race by Gender
 </li>
 </ol>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb144"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">helpdata</span>,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb146"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">helpdata</span>,</span>
 <span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mcs</span>,</span>
 <span>           y <span class="op">=</span> <span class="va">cesd</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="module_d1_02_files/figure-html/unnamed-chunk-54-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure"><p><img src="module_d1_02_files/figure-html/unnamed-chunk-55-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
@@ -4819,14 +4835,14 @@ Table&nbsp;5: Table Race by Gender
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb145"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># scatterplot of mcs and cesd</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb147"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># scatterplot of mcs and cesd</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">helpdata</span>,</span>
 <span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mcs</span>,</span>
 <span>           y <span class="op">=</span> <span class="va">cesd</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="module_d1_02_files/figure-html/unnamed-chunk-55-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure"><p><img src="module_d1_02_files/figure-html/unnamed-chunk-56-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
@@ -4837,7 +4853,7 @@ Table&nbsp;5: Table Race by Gender
 </li>
 </ol>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb146"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># color by gender</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb148"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># color by gender</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">helpdata</span>,</span>
 <span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mcs</span>,</span>
 <span>           y <span class="op">=</span> <span class="va">cesd</span>,</span>
@@ -4845,7 +4861,7 @@ Table&nbsp;5: Table Race by Gender
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="module_d1_02_files/figure-html/unnamed-chunk-56-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure"><p><img src="module_d1_02_files/figure-html/unnamed-chunk-57-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
@@ -4886,7 +4902,7 @@ Table&nbsp;5: Table Race by Gender
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb147"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># add title, footnote, and better axis labels</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb149"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># add title, footnote, and better axis labels</span></span>
 <span><span class="co"># color by gender</span></span>
 <span><span class="co"># update legend title</span></span>
 <span><span class="co"># \n inserts line break in long caption</span></span>
@@ -4904,7 +4920,7 @@ Table&nbsp;5: Table Race by Gender
 <span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="module_d1_02_files/figure-html/unnamed-chunk-57-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure"><p><img src="module_d1_02_files/figure-html/unnamed-chunk-58-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
@@ -4914,7 +4930,7 @@ Table&nbsp;5: Table Race by Gender
 <li>Add “best fit” linear regression model lines to the plot by gender by adding the layer <code>geom_smooth(method = "lm")</code>.</li>
 </ol>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb148"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># add best fit lines by gender</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb150"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># add best fit lines by gender</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">helpdata</span>,</span>
 <span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mcs</span>,</span>
 <span>           y <span class="op">=</span> <span class="va">cesd</span>,</span>
@@ -4931,7 +4947,7 @@ Table&nbsp;5: Table Race by Gender
 <span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="module_d1_02_files/figure-html/unnamed-chunk-58-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure"><p><img src="module_d1_02_files/figure-html/unnamed-chunk-59-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
@@ -4940,38 +4956,38 @@ Table&nbsp;5: Table Race by Gender
 </section><section id="sas---visualizations-with-proc-sgplot" class="level3"><h3 class="anchored" data-anchor-id="sas---visualizations-with-proc-sgplot">SAS - Visualizations with <code>PROC SGPLOT</code>
 </h3>
 <p><code>PROC SGPLOT</code> is also really useful for making graphics visualizations in SAS. Here is the SAS code to make plots similar to what we did above.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb149"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a>* scatterplot of mcs and cesd;</span>
-<span id="cb149-2"><a href="#cb149-2" aria-hidden="true" tabindex="-1"></a>proc sgplot data=helpfmt;</span>
-<span id="cb149-3"><a href="#cb149-3" aria-hidden="true" tabindex="-1"></a>  scatter x=mcs y=cesd;</span>
-<span id="cb149-4"><a href="#cb149-4" aria-hidden="true" tabindex="-1"></a>run;</span>
-<span id="cb149-5"><a href="#cb149-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb149-6"><a href="#cb149-6" aria-hidden="true" tabindex="-1"></a>* color by gender;</span>
-<span id="cb149-7"><a href="#cb149-7" aria-hidden="true" tabindex="-1"></a>proc sgplot data=helpfmt;</span>
-<span id="cb149-8"><a href="#cb149-8" aria-hidden="true" tabindex="-1"></a>  scatter x=mcs y=cesd / group=female;</span>
-<span id="cb149-9"><a href="#cb149-9" aria-hidden="true" tabindex="-1"></a>run;</span>
-<span id="cb149-10"><a href="#cb149-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb149-11"><a href="#cb149-11" aria-hidden="true" tabindex="-1"></a>* add best fit lines by group;</span>
-<span id="cb149-12"><a href="#cb149-12" aria-hidden="true" tabindex="-1"></a>proc sgplot data=helpfmt;</span>
-<span id="cb149-13"><a href="#cb149-13" aria-hidden="true" tabindex="-1"></a>  reg x=mcs y=cesd / group=female;</span>
-<span id="cb149-14"><a href="#cb149-14" aria-hidden="true" tabindex="-1"></a>run;</span>
-<span id="cb149-15"><a href="#cb149-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb149-16"><a href="#cb149-16" aria-hidden="true" tabindex="-1"></a>* add title, footnotes, </span>
-<span id="cb149-17"><a href="#cb149-17" aria-hidden="true" tabindex="-1"></a>  update xaxis and yaxis labels</span>
-<span id="cb149-18"><a href="#cb149-18" aria-hidden="true" tabindex="-1"></a>  and legend title</span>
-<span id="cb149-19"><a href="#cb149-19" aria-hidden="true" tabindex="-1"></a>  add confidence bands for best fit lines;</span>
-<span id="cb149-20"><a href="#cb149-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb149-21"><a href="#cb149-21" aria-hidden="true" tabindex="-1"></a>TITLE1 "CESD Scores by MCS Scores";</span>
-<span id="cb149-22"><a href="#cb149-22" aria-hidden="true" tabindex="-1"></a>FOOTNOTE1 "CESD = Center for Epidemiological Studies-Depression";</span>
-<span id="cb149-23"><a href="#cb149-23" aria-hidden="true" tabindex="-1"></a>FOOTNOTE2 "MCS = Mental Component Scale for SF36 Quality of Life";</span>
-<span id="cb149-24"><a href="#cb149-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb149-25"><a href="#cb149-25" aria-hidden="true" tabindex="-1"></a>proc sgplot data=helpfmt;</span>
-<span id="cb149-26"><a href="#cb149-26" aria-hidden="true" tabindex="-1"></a>  reg x=mcs y=cesd / clm group=female;</span>
-<span id="cb149-27"><a href="#cb149-27" aria-hidden="true" tabindex="-1"></a>  xaxis label="MCS Scores";</span>
-<span id="cb149-28"><a href="#cb149-28" aria-hidden="true" tabindex="-1"></a>  yaxis label="CESD Scores";</span>
-<span id="cb149-29"><a href="#cb149-29" aria-hidden="true" tabindex="-1"></a>  keylegend / title="Gender";</span>
-<span id="cb149-30"><a href="#cb149-30" aria-hidden="true" tabindex="-1"></a>run;</span>
-<span id="cb149-31"><a href="#cb149-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb149-32"><a href="#cb149-32" aria-hidden="true" tabindex="-1"></a>TITLE; FOOTNOTE; /* Clears the titles and footnotes */</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb151"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a>* scatterplot of mcs and cesd;</span>
+<span id="cb151-2"><a href="#cb151-2" aria-hidden="true" tabindex="-1"></a>proc sgplot data=helpfmt;</span>
+<span id="cb151-3"><a href="#cb151-3" aria-hidden="true" tabindex="-1"></a>  scatter x=mcs y=cesd;</span>
+<span id="cb151-4"><a href="#cb151-4" aria-hidden="true" tabindex="-1"></a>run;</span>
+<span id="cb151-5"><a href="#cb151-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-6"><a href="#cb151-6" aria-hidden="true" tabindex="-1"></a>* color by gender;</span>
+<span id="cb151-7"><a href="#cb151-7" aria-hidden="true" tabindex="-1"></a>proc sgplot data=helpfmt;</span>
+<span id="cb151-8"><a href="#cb151-8" aria-hidden="true" tabindex="-1"></a>  scatter x=mcs y=cesd / group=female;</span>
+<span id="cb151-9"><a href="#cb151-9" aria-hidden="true" tabindex="-1"></a>run;</span>
+<span id="cb151-10"><a href="#cb151-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-11"><a href="#cb151-11" aria-hidden="true" tabindex="-1"></a>* add best fit lines by group;</span>
+<span id="cb151-12"><a href="#cb151-12" aria-hidden="true" tabindex="-1"></a>proc sgplot data=helpfmt;</span>
+<span id="cb151-13"><a href="#cb151-13" aria-hidden="true" tabindex="-1"></a>  reg x=mcs y=cesd / group=female;</span>
+<span id="cb151-14"><a href="#cb151-14" aria-hidden="true" tabindex="-1"></a>run;</span>
+<span id="cb151-15"><a href="#cb151-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-16"><a href="#cb151-16" aria-hidden="true" tabindex="-1"></a>* add title, footnotes, </span>
+<span id="cb151-17"><a href="#cb151-17" aria-hidden="true" tabindex="-1"></a>  update xaxis and yaxis labels</span>
+<span id="cb151-18"><a href="#cb151-18" aria-hidden="true" tabindex="-1"></a>  and legend title</span>
+<span id="cb151-19"><a href="#cb151-19" aria-hidden="true" tabindex="-1"></a>  add confidence bands for best fit lines;</span>
+<span id="cb151-20"><a href="#cb151-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-21"><a href="#cb151-21" aria-hidden="true" tabindex="-1"></a>TITLE1 "CESD Scores by MCS Scores";</span>
+<span id="cb151-22"><a href="#cb151-22" aria-hidden="true" tabindex="-1"></a>FOOTNOTE1 "CESD = Center for Epidemiological Studies-Depression";</span>
+<span id="cb151-23"><a href="#cb151-23" aria-hidden="true" tabindex="-1"></a>FOOTNOTE2 "MCS = Mental Component Scale for SF36 Quality of Life";</span>
+<span id="cb151-24"><a href="#cb151-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-25"><a href="#cb151-25" aria-hidden="true" tabindex="-1"></a>proc sgplot data=helpfmt;</span>
+<span id="cb151-26"><a href="#cb151-26" aria-hidden="true" tabindex="-1"></a>  reg x=mcs y=cesd / clm group=female;</span>
+<span id="cb151-27"><a href="#cb151-27" aria-hidden="true" tabindex="-1"></a>  xaxis label="MCS Scores";</span>
+<span id="cb151-28"><a href="#cb151-28" aria-hidden="true" tabindex="-1"></a>  yaxis label="CESD Scores";</span>
+<span id="cb151-29"><a href="#cb151-29" aria-hidden="true" tabindex="-1"></a>  keylegend / title="Gender";</span>
+<span id="cb151-30"><a href="#cb151-30" aria-hidden="true" tabindex="-1"></a>run;</span>
+<span id="cb151-31"><a href="#cb151-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-32"><a href="#cb151-32" aria-hidden="true" tabindex="-1"></a>TITLE; FOOTNOTE; /* Clears the titles and footnotes */</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div style="page-break-after: always;"></div>
 </section><section id="optional-plot-example" class="level3"><h3 class="anchored" data-anchor-id="optional-plot-example">OPTIONAL PLOT EXAMPLE</h3>
 <p>For the plot example below, we need to first gather some summary statistics and save them into a new dataset object. We will build the plot below using the original dataset <code>ToothGrowth</code> (which is a built-in dataset) AND the <code>tg.summary</code> data object.</p>
@@ -5010,7 +5026,7 @@ Table&nbsp;5: Table Race by Gender
 </ol>
 <div style="page-break-after: always;"></div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb150"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># OPTIONAL PLOT EXAMPLE </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb152"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># OPTIONAL PLOT EXAMPLE </span></span>
 <span><span class="co"># first get summary stats</span></span>
 <span><span class="co"># build error bar using stats</span></span>
 <span><span class="co"># means +/- SD for error bars</span></span>
@@ -5046,7 +5062,7 @@ Table&nbsp;5: Table Race by Gender
 </div>
 <div style="page-break-after: always;"></div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb152"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Combine with jitter points</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb154"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Combine with jitter points</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">ToothGrowth</span>, </span>
 <span>       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">dose</span>, </span>
 <span>           y<span class="op">=</span><span class="va">len</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -5081,7 +5097,7 @@ Table&nbsp;5: Table Race by Gender
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.caption <span class="op">=</span> <span class="fu"><a href="https://wilkelab.org/ggtext/reference/element_markdown.html">element_markdown</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="module_d1_02_files/figure-html/unnamed-chunk-60-1.png" class="img-fluid figure-img" width="576"></p>
+<figure class="figure"><p><img src="module_d1_02_files/figure-html/unnamed-chunk-61-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>

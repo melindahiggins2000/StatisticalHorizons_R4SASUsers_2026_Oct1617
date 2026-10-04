@@ -28,6 +28,8 @@ tt_cesd1 <-
 bartlett.test(cesd1 ~ treat,
               data = helpdata)
 
+library(dplyr)
+
 # look at means and sd's of each group
 # ratios of SDs is < 2
 helpdata %>%
@@ -156,10 +158,24 @@ fit.aov
 # what kind of object is fit.aov
 class(fit.aov)
 
+# look at the coefficients from this model
+# by selecting the "coefficients" vector
+# out of the fit.aov model list object
+# option 1
+fit.aov[["coefficients"]]
+
+# option 2
+fit.aov$coefficients
+
 # get better formatted output
 summary(fit.aov)
 anova(fit.aov)
 sfitaov <- summary(fit.aov)
+
+# options for pulling out the p-value
+# for this ANOVA model
+sfitaov[[1]][["Pr(>F)"]]
+sfitaov[[1]]$`Pr(>F)`
 
 # NOTE: install the effects package
 # use effects package to get

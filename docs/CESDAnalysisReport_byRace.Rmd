@@ -33,7 +33,7 @@ library(ggplot2)
 # Create data subset by race
 # racegrp options are:
 # black, hispanic, other, white
-racechoice <- "white"
+racechoice <- "black"
 
 helpdata <- helpdata %>%
   filter(racegrp == racechoice)

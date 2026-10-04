@@ -2,7 +2,10 @@
 title: "CESD Analysis Report - All Participants"
 author: "Melinda Higgins"
 date: "2026-05-18"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}

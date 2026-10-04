@@ -29,6 +29,8 @@ knitr::opts_chunk$set(
 2. Install RStudio Desktop
 3. Install R Packages 
 4. Run a quick test
+5. Download Files from Google Drive
+6. Create New RStudio Project
 
 ---
 
@@ -228,6 +230,203 @@ library(ggplot2)
 ggplot(pressure, aes(temperature, pressure)) +
   geom_point()
 ```
+
+---
+
+\newpage
+## 5. Download Files from Google Drive 
+
+Now that you have R and RStudio ready to go, let's download the files you will need for this workshop.
+
+First, go to the Google Drive [R4SASUsers_Oct2026](https://drive.google.com/drive/folders/1Nnb9pA7g7iRLg9o2yidV2MWMWoDTOcHV?usp=sharing) for this workshop.
+
+Next, click the down arrow next to the folder name and select "Download".
+
+![](googledrive_01.png)
+
+On my computer (Windows 11 operating system) using Google Chrome browser, this downloads a ZIPPED compressed file "R4SASUsers_Oct2026-20261004T010304Z-1-001.zip" - your actual filename may be different. But look for something similar. 
+
+![](googledrive_02.png)
+
+This *.ZIP file actually has all of the files that are on the Google Drive folder all in one compressed file. You have to UNZIP or EXTRACT these files before you can use them. The screenshots below are from a Windows 11 operating system - these may look different on different operating systems (e.g. Linux, Mac), but the process should be similar.
+
+Click on "Extract All"
+
+![](googledrive_03.png)
+
+I usually accept the defaults for the folder location, but feel free to change this using "Browse" if you wish. Then click "Extract".
+
+![](googledrive_04.png)
+
+This then extracts all of the original files and places them into this new location on your computer (or cloud or network drive - your choice).
+
+You should now have a new folder on your computer that looks like this:
+
+![](googledrive_05.png)
+
+Open this folder. These files and subfolders should now match what was on the Google Drive [R4SASUsers_Oct2026](https://drive.google.com/drive/folders/1Nnb9pA7g7iRLg9o2yidV2MWMWoDTOcHV?usp=sharing).
+
+![](googledrive_06.png)
+
+The files contained in this entire folder directory are:
+
+```
+│   Setup.pdf
+│
+├───FilesForRProject
+│       aggstats.R
+│       aggstats.sas
+│       CESDAnalysisReport.Rmd
+│       CESDAnalysisReport_byRace.Rmd
+│       CESDAnalysisReport_RaceParameters.Rmd
+│       d1_homework.R
+│       d1_homework_key.R
+│       d2_homework.R
+│       d2_homework_key.R
+│       dat1.Rdata
+│       dat1.sas7bdat
+│       dat2.Rdata
+│       dat2.sas7bdat
+│       finddups.R
+│       finddups.sas
+│       help.csv
+│       help.Rdata
+│       help.sas7bdat
+│       helpmkh.sav
+│       letexample.R
+│       letexample.sas
+│       macroreg.R
+│       macroreg.sas
+│       module_d1_01.R
+│       module_d1_02.R
+│       module_d2_01.R
+│       Rscript_01.R
+│       sascode_d1_02.sas
+│       sascode_d2_01.sas
+│       saveplots.R
+│       treat1.Rdata
+│       treat1.sas7bdat
+│       treat2.Rdata
+│       treat2.sas7bdat
+│
+├───OtherDatasets
+│       help.csv
+│       helpmkh.sav
+│
+├───RcodeFiles
+│       aggstats.R
+│       d1_homework.R
+│       d1_homework_key.R
+│       d2_homework.R
+│       d2_homework_key.R
+│       finddups.R
+│       letexample.R
+│       macroreg.R
+│       module_d1_01.R
+│       module_d1_02.R
+│       module_d2_01.R
+│       Rscript_01.R
+│       saveplots.R
+│
+├───Rdatasets
+│       dat1.Rdata
+│       dat2.Rdata
+│       help.Rdata
+│       treat1.Rdata
+│       treat2.Rdata
+│
+├───RmarkdownFiles
+│       CESDAnalysisReport.Rmd
+│       CESDAnalysisReport_byRace.Rmd
+│       CESDAnalysisReport_RaceParameters.Rmd
+│
+├───SAScodeFiles
+│       aggstats.sas
+│       finddups.sas
+│       letexample.sas
+│       macroreg.sas
+│       sascode_d1_02.sas
+│       sascode_d2_01.sas
+│
+├───SASdatasets
+│       dat1.sas7bdat
+│       dat2.sas7bdat
+│       help.sas7bdat
+│       treat1.sas7bdat
+│       treat2.sas7bdat
+│
+└───Slides
+        RforSASUsers_d1_01.pdf
+        RforSASUsers_d1_01.pptx
+```
+
+Next, we are going to move the files in the subfolder "FilesForRProject" into a new project folder on your computer.
+
+Create a new folder on your computer named "R4SASUsers". Click on New/Folder and name this new folder "R4SASUsers".
+
+![](googledrive_07.png)
+
+Open another file folder window and go back to where you unzipped the Google Drive files and folders. Then click on the subfolder "FilesForProject" to open it.
+
+![](googledrive_08.png)
+
+After opening the folder window, click on the 3 dots `...` and choose "Select All"
+
+![](googledrive_09.png)
+
+![](googledrive_10.png)
+
+After selecting all of these files, choose COPY.
+
+![](googledrive_11.png)
+
+Then open the folder you just created and PASTE all of these files into your new folder.
+
+![](googledrive_12.png)
+
+![](googledrive_13.png)
+
+You now have your project folder created for this workshop. On my computer this folder location is `C:\R4SASUsers`.
+
+---
+
+\newpage
+## 6. Create New RStudio Project
+
+Start RStudio and then Click on "File/New Project".
+
+![](rstudio_project_01.png)
+
+You have 3 options here:
+
+* New Directory
+    - if the project folder does not exist yet
+    - this is useful for more complicated "projects" like creating website or R packages
+* Existing Directory
+    - use this option if the folder where all of your project files are stored already exists
+* Version Control
+    - use this option if you want to bring your project under version control using [Github](https://github.com/) or [Subversion Control (SVN)](https://subversion.apache.org/).
+
+We will use "Existing Directory" since you have already created the project folder on your computer and put your files in there.
+
+![](rstudio_project_02.png)
+
+Next you need to select the existing project folder on your computer (or cloud or networked drive) - click "Browse"
+
+![](rstudio_project_03.png)
+
+Then go find the folder and click "Open".
+
+![](rstudio_project_04.png)
+
+Now check that your "Project working directory" matches the folder you selected - on my computer this is `C:\R4SASUsers`. Then click "Create Project" to create a new RStudio project.
+
+![](rstudio_project_05.png)
+
+Your new RStudio project should look like this. Check the folder location at the top left of your window. Also check that this is the SAME folder shown in the "Files" tab at the bottom right window. In this "Files" window, you should see the files you copied over from what you downloaded from the "FilesForRProject" folder from the Google Drive [R4SASUsers_Oct2026](https://drive.google.com/drive/folders/1Nnb9pA7g7iRLg9o2yidV2MWMWoDTOcHV?usp=sharing) for this workshop.
+
+![](rstudio_project_06.png)
+
 
 **CONGRATULATIONS** You should be good to go!
 

@@ -391,7 +391,7 @@ proc means data=help q1 median q3 QNTLDEF=4;
 
 proc means data=help;
   where female = 1;
-  var age;
+  var age cesd;
   run;
 
 * Get stats for a subset

@@ -14,7 +14,7 @@
 x <- seq(from=10, to=100, by=2)
 y <- 4 + (5*x) + (10*x*x)
 plot(x, y, 
-     type = "both", 
+     type = "b", 
      col = "purple")
 
 # Exercise 2 ==============================================
@@ -35,9 +35,18 @@ helpdata <- helpdata %>%
                       levels = c(0, 1),
                       labels = c("male", "female")))
 
+class(helpdata$female)    # this is numeric
+class(helpdata$gender.f)  # this is factor
+class(helpdata$racegrp)   # this is factor
+
+table(helpdata$female)
+table(as.numeric(helpdata$gender.f))
+
+
+
 # Exercise 3 ==============================================
 # - from the updated helpdata dataset after adding gender.f
-# - select the "homeless" participants
+# - select the "homeless" participants (using the filter() function)
 #   using homeless == 1
 # - also select only cesd and pss_fr from baseline
 #   and select gender.f variable
@@ -46,20 +55,24 @@ helpdata <- helpdata %>%
 # - using ggplot2, make a scatterplot
 #   of cesd scores (on the y-axis)
 #   by pss_fr (on the x-axis)
-# - color the points by gender (using the variable female)
+# - color the points by gender (using the variable female) - **TYPO use gender.f**
 # - add a best fit line for each group
 # - add a title "CESD by Perceived Social Support from Friends"
 # - add a subtitle "Best fit lines by gender"
 
 h1 <- helpdata %>%
   filter(homeless == 1) %>%
-  select(cesd, pss_fr, gender.f)
+  select(cesd, pss_fr, gender.f, female)
+
+helpdata %>%
+  filter(gender.f == "male") %>%
+  dim()
 
 library(ggplot2)
 ggplot(h1,
        aes(x=pss_fr, 
            y=cesd,
-           color = gender.f)) +
+           color = as.factor(female))) +
   geom_point() +
   geom_smooth(method = "lm") +
   labs(
@@ -83,8 +96,8 @@ cesd2.summary <- helpdata %>%
   group_by(homeless) %>%
   summarise(
     n = n(),
-    sd = sd(cesd2, na.rm = TRUE),
-    len = mean(cesd2, na.rm = TRUE)
+    sd_cesd = sd(cesd2, na.rm = TRUE),
+    mean_cesd = mean(cesd2, na.rm = TRUE)
   )
 cesd2.summary
 

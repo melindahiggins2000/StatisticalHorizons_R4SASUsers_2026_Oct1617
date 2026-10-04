@@ -327,7 +327,7 @@ run;
 * t-test;
 proc ttest data=help;
   class treat;
-  var cesd1;
+  var cesd1;    /*cesd1 is CESD at 6m, 1st followup timepoint */
   run;
 
 * non-parametric two-group test;
@@ -403,7 +403,7 @@ proc reg data=help;
 * compute mcs > 50;
 data help;
   set help;
-  if not missing(mcs) then mcs_gt50 = mcs > 16;
+  if not missing(mcs) then mcs_gt50 = mcs > 50; /* fix TYPO to 50 */
   else mcs = .;
   run;
 

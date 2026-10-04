@@ -22,6 +22,19 @@ helpmkh2 <- read_sav("helpmkh.sav")
 library(readr)
 help <- read_csv("help.csv")
 
+# find out what kind of object helpdata is
+class(helpdata)
+
+# what are the dimension, rows -x- cols
+dim(helpdata)
+
+# what are all of the names of the variables
+names(helpdata)
+
+# put the output from names()
+# into noquote() to remove the quotes
+noquote(names(helpdata))
+
 # =========================================================
 # Section 2A. Selecting Data (variables and subsets) ======
 # =========================================================
@@ -38,9 +51,23 @@ ages <- helpdata$age
 
 # tidyverse - dplyr Approach using select()
 library(dplyr)
+
+# using the dplyr::select() function
+# the first argument is the dataset
+# which is defined as .data = helpdata
+# select the "age" variable from helpdata
+select(helpdata, age)
+
+# can also be written as 
+select(.data = helpdata, age)
+
+# dplyr approach with %>%
+helpdata %>%
+  select(age)
+
 helpdata %>%
   select(age) %>%
-  print(10)        # only print out 10 rows
+  head(10)        # only print out 10 rows
 
 # save object
 ages2 <- helpdata %>%
@@ -60,6 +87,8 @@ names(helpdata)
 
 # Hint remove quotes " " ==================================
 noquote(names(helpdata))
+
+# using %>% approach
 names(helpdata) %>% noquote()
 
 # Base R approach 
@@ -156,7 +185,26 @@ helpdata %>%
   summary()
 
 # get parametric statistics
-sd(helpdata$age)
+sd(helpdata$age, na.rm=TRUE)
+
+sd(helpdata$cesd1)
+sd(helpdata$cesd1, na.rm=TRUE)
+
+# suppose missing was coded -99
+# keep all rows where age is NOT -99
+# keep all rows where cesd1 is NOT missing (NA)
+# then find the average age
+data %>%
+  filter(age != -99) %>%
+  filter(!is.na(cesd1)) %>%
+  mean(age)
+
+# another approach
+# keep all rows where age and cesd1 are both NOT missing
+completecesd1 <- helpdata %>%
+  select(cesd1, age) %>%
+  filter(complete.cases(.)) %>%
+  select(cesd1, age)
 
 helpdata %>%
   select(age) %>%
@@ -207,24 +255,6 @@ median(helpdata$age, na.rm=TRUE)
 quantile(helpdata$age, probs = 0.25, na.rm=TRUE)
 quantile(helpdata$age, probs = 0.75, na.rm=TRUE)
 
-# create custom output
-helpdata %>%
-  summarise(
-    age_n = n(),
-    meanage = mean(age, na.rm=TRUE),
-    sdage = sd(age, na.rm=TRUE),
-    medage = median(age, na.rm=TRUE),
-    q25age = quantile(age, 
-                      probs = 0.25,
-                      na.rm=TRUE),
-    q75age = quantile(age, 
-                      probs = 0.75,
-                      na.rm=TRUE),
-    minage = min(age, na.rm=TRUE),
-    maxage = max(age, na.rm=TRUE)
-  )
-
-
 # NOTE: Pay attention to default settings!
 # get percentiles, use quantile() function
 # check default settings
@@ -244,6 +274,23 @@ quantile(helpdata$age,
          type=9,
          na.rm=TRUE)
 
+# create custom output
+helpdata %>%
+  summarise(
+    age_n = n(),
+    meanage = mean(age, na.rm=TRUE),
+    sdage = sd(age, na.rm=TRUE),
+    medage = median(age, na.rm=TRUE),
+    q25age = quantile(age, 
+                      probs = 0.25,
+                      na.rm=TRUE),
+    q75age = quantile(age, 
+                      probs = 0.75,
+                      na.rm=TRUE),
+    minage = min(age, na.rm=TRUE),
+    maxage = max(age, na.rm=TRUE)
+  )
+
 # get age stats for women only
 helpdata %>%
   filter(female == 1) %>%
@@ -262,8 +309,14 @@ helpdata %>%
     maxage = max(age, na.rm=TRUE)
   )
 
+helpracegrp <- helpdata %>%
+  group_by(racegrp)
+
+class(helpdata)
+class(helpracegrp)
+
 # get age stats by racegrp
-helpdata %>%
+agebyrace <- helpdata %>%
   group_by(racegrp) %>%
   summarise(
     age_n = n(),
@@ -286,7 +339,7 @@ helpdata %>%
 # sort by age
 helpdata %>%
   filter(female == 1) %>%
-  select(id, cesd) %>%
+  select(id, cesd) %>% # dropped age here
   arrange(age)
 
 # why didn't this work?
@@ -332,6 +385,17 @@ fruit <- c("apple","apple","apple",
 table(fruit)
 table(fruit, useNA = "ifany")
 
+# e2b is the item which asks
+# how many days in detox, which was
+# left blank if they did not enter detox
+# from a branching-logic question
+
+# table summary without a list of the missing NAs
+table(helpdata$e2b)
+
+# table summary with a list of the missing NAs
+table(helpdata$e2b, useNA = "ifany")
+
 # table of racegrp by gender
 # base R
 table(helpdata$racegrp,
@@ -357,6 +421,11 @@ helpdata <- helpdata %>%
     gender.f = factor(female,
                       levels = c(0, 1),
                       labels = c("male", "female")))
+
+# dplyr
+helpdata %>%
+  select(racegrp, female.f) %>%
+  table(useNA = "ifany")
 
 # make table with gmodels package
 # and CrossTable() function
@@ -446,7 +515,7 @@ library(ggplot2)
 # scatterplot of mcs and cesd
 ggplot(data = helpdata,
        aes(x = mcs,
-           y = cesd)) +
+           y = cesd)) + # add layer
   geom_point()
 
 # color by gender
